@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SignIn from "./signin.jsx";
 
 
 
@@ -8,10 +7,10 @@ function Dashboard() {
     const clickk = ()=>{seta(a+1)}
   return (
     <div>
-        <SignIn/>
       <h1>💖 Hello World!</h1>
       <p>Welcome to your Electron application. hein sachme</p>
       <>idhar counter rakhte {a}</>
+      <>can i edit this?</>
       <button onClick={clickk}>abc</button>
     </div>
   );

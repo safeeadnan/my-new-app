@@ -12,6 +12,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
+
+
 
 function Copyright(props) {
   return (
@@ -31,13 +34,20 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+    const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    
     console.log({
-      email: data.get('email'),
+      userName: data.get('userName'),
       password: data.get('password'),
     });
+    if("safee" === data.get('userName')){
+        
+
+        navigate("/main_window/Dashboard");
+    }
   };
 
   return (
@@ -63,10 +73,10 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="userName"
+              label="User Name"
+              name="userName"
+              autoComplete="userName"
               autoFocus
             />
             <TextField
@@ -79,10 +89,6 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -91,18 +97,7 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+           
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
