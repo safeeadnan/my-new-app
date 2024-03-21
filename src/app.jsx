@@ -1,15 +1,14 @@
 import React, { useState } from "react";
+import SignIn from "./signin.jsx";
+import Dashboard from "./dashboard.jsx";
 
 
 function App() {
-    const [a,seta]=useState(0);
-    const clickk = ()=>{seta(a+1)}
   return (
     <div>
-      <h1>💖 Hello World!</h1>
-      <p>Welcome to your Electron application. hein sachme</p>
-      <>idhar counter rakhte {a}</>
-      <button onClick={clickk}>abc</button>
+      <>ascvsd</>
+      <SignIn/>
+      <Dashboard/>
     </div>
   );
 }
