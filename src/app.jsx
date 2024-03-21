@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/main_window" element={<SignIn />} />
+        <Route exact path="/main_window" element={<Dashboard />} />
         <Route path="/main_window/signin" element={<SignIn />} />
         <Route path="/main_window/Dashboard" element={<Dashboard />} />
       </Routes>
