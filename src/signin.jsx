@@ -34,19 +34,19 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    
+
     console.log({
       userName: data.get('userName'),
       password: data.get('password'),
     });
-    if("safee" === data.get('userName')){
-        
+    if ("safee" === data.get('userName')) {
 
-        navigate("/main_window/Dashboard");
+
+      navigate("/main_window/Dashboard");
     }
   };
 
@@ -97,7 +97,7 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-           
+
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

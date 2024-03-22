@@ -9,41 +9,56 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { useNavigate } from "react-router-dom";
 
-export const mainListItems = (
-  <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dasboard" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Medicine" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Sale Record" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Sales" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Purchase" />
-    </ListItemButton>
-  </React.Fragment>
-);
+export function MainListItems() {
+  const navigate = useNavigate();
+
+  function onSalesClick(){
+    console.log("abcs")
+    navigate("/main_window/SalesPage");
+  }
+
+  function onDashboardClick(){
+    console.log("abcs")
+    navigate("/main_window");
+  }
+
+  return (
+    <React.Fragment>
+      <ListItemButton onClick={onDashboardClick}>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dasboard" />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Medicine" />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Sale Record" />
+      </ListItemButton>
+      <ListItemButton onClick={onSalesClick}>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Sales" />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <ListItemText primary="Purchase" />
+      </ListItemButton>
+    </React.Fragment>
+    );
+};
 
 export const secondaryListItems = (
   <React.Fragment>

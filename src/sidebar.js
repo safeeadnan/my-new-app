@@ -21,8 +21,10 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import { drawerWidth } from './dashboard.jsx';
-import { mainListItems, secondaryListItems } from './listItems';
+import { MainListItems, secondaryListItems } from './listItems';
 import ResponsiveAppBar from './navbar.js';
+import { AdministrationMenu, AccountsMenu, MasterMenu, ReportMenu, ToolsMenu, TransactionMenu } from './components/menu.js';
+
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -68,10 +70,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 export default function SideBar() {
-
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -80,7 +79,6 @@ export default function SideBar() {
         <>
 
             <AppBar position="absolute" open={open}>
-                <ResponsiveAppBar toggleDrawer={toggleDrawer}/>
                 <Toolbar
                     sx={{
                         pr: '24px', // keep right padding when drawer closed
@@ -107,6 +105,13 @@ export default function SideBar() {
                     >
                         Dashboard
                     </Typography>
+                    <AdministrationMenu/>
+                    <MasterMenu/>
+                    <TransactionMenu/>
+                    <AccountsMenu/>
+                    <ReportMenu/>
+                    <ToolsMenu/>
+                    
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
                             <NotificationsIcon />
@@ -129,8 +134,9 @@ export default function SideBar() {
                     </IconButton>
                 </Toolbar>
                 <Divider />
+                <MainListItems/>
                 <List component="nav">
-                    {mainListItems}
+                   
                     <Divider sx={{ my: 1 }} />
                     {secondaryListItems}
                 </List>
