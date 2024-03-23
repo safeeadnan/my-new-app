@@ -51,7 +51,7 @@ const SalesContent = () => {
             </Typography>
             <List>
                 {Object.entries(salesItems).map(([itemName, itemData]) => (
-                    <ListItem button key={itemName} onClick={() => handleSalesItemClick(itemName)}>
+                    <ListItem button key={itemName} aria-setsize={'small'} onClick={() => handleSalesItemClick(itemName)}>
                         <ListItemIcon>{itemData.icon}</ListItemIcon>
                         <ListItemText primary={itemData.text} />
                     </ListItem>

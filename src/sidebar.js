@@ -23,8 +23,12 @@ import Orders from './Orders';
 import { drawerWidth } from './dashboard.jsx';
 import { MainListItems, secondaryListItems } from './listItems';
 import ResponsiveAppBar from './navbar.js';
-import { AdministrationMenu, AccountsMenu, MasterMenu, ReportMenu, ToolsMenu, TransactionMenu } from './components/menu.js';
-
+import AdministrationMenu from './components/dashboardPage/administrationMenu.js';
+import AccountsMenu  from './components/dashboardPage/accountsMenu.js';
+import MasterMenu from './components/dashboardPage/masterMenu.js';
+import TransactionMenu from './components/dashboardPage/transactionMenu.js';
+import ToolsMenu from './components/dashboardPage/toolsMenu.js';
+import ReportMenu from './components/dashboardPage/reportButton.js';
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({

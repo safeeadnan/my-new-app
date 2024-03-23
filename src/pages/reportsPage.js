@@ -22,8 +22,10 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import SalesContent from '../components/reportsPage/salesContent';
-
+import Autocomplete from '@mui/material/Autocomplete';
+import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
+import { Button } from '@mui/material';
 const drawerWidth = 240;
 
 // Component for Masters
@@ -132,12 +134,14 @@ const combinedItems = [
 
 export default function ReportsPage() {
     const [selectedItem, setSelectedItem] = useState(null);
-
+const navigate = useNavigate();
     // Click handler for each item
     function handleItemClick(itemText) {
         setSelectedItem(itemText);
     }
-
+    function onClickClose(){
+        navigate("/main_window/DashBoard");
+    }
     // Combined list of items with icons
 
 
@@ -149,14 +153,17 @@ export default function ReportsPage() {
                     <Typography variant="h6" noWrap component="div">
                         Clipped drawer
                     </Typography>
+                    <Button variant='secondary' onClick={onClickClose}>Close</Button>
                 </Toolbar>
+                
             </AppBar>
             <Drawer
                 variant="permanent"
                 sx={{
+
                     width: drawerWidth,
                     flexShrink: 0,
-                    [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+                    [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', height: '100vh', },
                 }}
             >
                 <Toolbar />
@@ -175,21 +182,75 @@ export default function ReportsPage() {
                     </List>
                 </Box>
             </Drawer>
-<>
             <Box
-                component="main"
                 sx={{
-                    height: '35vw',
-                    width: '80vw',
-                    backgroundColor: '#ffffff',
-                    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+                    flexGrow: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100vh', // Full viewport height
                 }}
-                id="reportsListCompo"
             >
-                <Toolbar />
-                {selectedItem ? combinedItems.find(item => item.text === selectedItem).content : <Typography>Select an item from the sidebar</Typography>}
+                <Box
+                    component="main"
+
+                    sx={{ flex: '1 1 auto', overflowY: 'auto' }}
+                    id="reportsListCompo"
+                >
+                    <Toolbar />
+                    {selectedItem ? combinedItems.find(item => item.text === selectedItem).content : <Typography>Select an item from the sidebar</Typography>}
+                </Box>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, p: 2 }}>
+                    {/* Second Content */}
+                    <TextField
+                        label="Date"
+                        type="date"
+                        defaultValue="2024-03-25"
+                        sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    <TextField
+                        label="Date"
+                        type="date"
+                        defaultValue="2024-03-25"
+                        sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    <TextField
+                        label="Text"
+                        sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                    />
+                    <TextField
+                        label="Text"
+                        sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                    />
+                    <TextField
+                        label="Text"
+                        sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                    />
+                    <Autocomplete
+                        options={['Option 1', 'Option 2', 'Option 3']}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Autocomplete" sx={{ width: 'calc(33.33% - 8px)' }} /> // Three items in a row
+                        )}
+                    />
+                    <Autocomplete
+                        options={['Option 1', 'Option 2', 'Option 3']}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Autocomplete" sx={{ width: 'calc(33.33% - 8px)' }} /> // Three items in a row
+                        )}
+                    />
+                    <Autocomplete
+                        options={['Option 1', 'Option 2', 'Option 3']}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Autocomplete" sx={{ width: 'calc(33.33% - 8px)' }} /> // Three items in a row
+                        )}
+                    />
+                </Box>
             </Box>
-            </>
         </Box>
     );
 
