@@ -17,6 +17,11 @@ import Paper from '@mui/material/Paper';
 import ComboBox from '../components/combobox';
 import EnhancedTable from '../components/enhancedTable';
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import DenseTable from '../components/denseTable';
 
 export function ButtonAppBar() {
 
@@ -66,6 +71,11 @@ export default function SalesPage() {
     const navigate = useNavigate();
 
 
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
     return (
         <Stack spacing={1}>
             <ButtonAppBar />
@@ -74,7 +84,7 @@ export default function SalesPage() {
                 <Grid container spacing={2}>
                     <Grid item xs={1} md={12}>
                     </Grid>
-                    <Grid item xs={6} md={12}>
+                    <Grid item xs={5} md={12}>
                         <Item>
                             <Grid container spacing={2} justifyContent={'space-between'} >
                                 <ComboBox />
@@ -93,7 +103,8 @@ export default function SalesPage() {
             </Box>
             <EnhancedTable />
             <Grid container spacing={0}>
-                <Grid item xs={5} md={6}>
+                <Grid item xs={4} md={6} >
+                <Grid container spacing={1}>
                     <Item>
                         <TextField
                             required
@@ -111,7 +122,7 @@ export default function SalesPage() {
                             fullWidth
                         />
                     </Item>
-                    <Item>
+                    <Item  >
                         <TextField
                             id="outlined-required"
                             label="Phone No"
@@ -136,15 +147,26 @@ export default function SalesPage() {
                             size="small"
                             defaultValue="Amravati"
                         />
-                        <ComboBox />
+                            <FormControl  sx={{ minWidth: 120 }}>
+                                <InputLabel id="demo-simple-select-label">MOP</InputLabel> 
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={age}
+                                    label="MOP"
+                                    size="small"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={"Cash"}>Cash</MenuItem>
+                                    <MenuItem value={"UPI"}>UPI</MenuItem>
+                                    <MenuItem value={"Credit"}>Credit</MenuItem>
+                                </Select>
+                            </FormControl>
                     </Item>
-                </Grid>
+                </Grid></Grid>
                 <Grid item xs={6} md={6}>
                     <Item>
-                        <ComboBox />
-                    </Item>
-                    <Item>
-                        <ComboBox />
+                    <DenseTable />
                     </Item>
                 </Grid>
             </Grid>
