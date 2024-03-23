@@ -1,176 +1,196 @@
 import * as React from 'react';
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { useNavigate } from "react-router-dom";
-
-import AppBar from '@mui/material/AppBar';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import AppBar from '@mui/material/AppBar';
+import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import ComboBox from '../components/combobox';
-import EnhancedTable from '../components/enhancedTable';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import HomeIcon from '@mui/icons-material/Home';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import LayersIcon from '@mui/icons-material/Layers';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import DescriptionIcon from '@mui/icons-material/Description';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import SalesContent from '../components/reportsPage/salesContent';
+
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import DenseTable from '../components/denseTable';
+const drawerWidth = 240;
 
-export function ButtonAppBar() {
+// Component for Masters
+const MastersContent = () => (
+    <div>
+        <Typography variant="h5">Masters</Typography>
+        <Typography paragraph>
+            This is the content for Masters.
+        </Typography>
+    </div>
+);
 
-    const navigate = useNavigate();
-    function onCancelClick() {
-        console.log("abcs")
-        navigate("/main_window/Dashboard");
-    }
-    return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
 
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Cash / Credit Memo
-                    </Typography>
-                    <ButtonGroup variant="secondary" aria-label="Small button group">
-                        <Button onClick={onCancelClick}>Cancel</Button>
-                        <Button>Event</Button>
-                        <Button>Search</Button>
-                        <Button>Todays</Button>
-                        <Button>RePrn</Button>
-                        <Button>Hold</Button>
-                        <Button>Pat Kit</Button>
-                        <Button>Doct Kit</Button>
-                        <Button>D to C</Button>
-                        <Button>Scan</Button>
-                        <Button>Save</Button>
-                        <Button>Exit</Button>
-                    </ButtonGroup>
+// Component for Purchase
+const PurchaseContent = () => (
+    <div>
+        <Typography variant="h5">Purchase</Typography>
+        <Typography paragraph>
+            This is the content for Purchase.
+        </Typography>
+    </div>
+);
 
-                </Toolbar>
-            </AppBar>
-        </Box>
-    );
-}
+// Component for Expiry
+const ExpiryContent = () => (
+    <div>
+        <Typography variant="h5">Expiry</Typography>
+        <Typography paragraph>
+            This is the content for Expiry.
+        </Typography>
+    </div>
+);
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
+// Component for Purchase Order
+const PurchaseOrderContent = () => (
+    <div>
+        <Typography variant="h5">Purchase Order</Typography>
+        <Typography paragraph>
+            This is the content for Purchase Order.
+        </Typography>
+    </div>
+);
+
+// Component for Stock
+const StockContent = () => (
+    <div>
+        <Typography variant="h5">Stock</Typography>
+        <Typography paragraph>
+            This is the content for Stock.
+        </Typography>
+    </div>
+);
+
+// Component for Accounts
+const AccountsContent = () => (
+    <div>
+        <Typography variant="h5">Accounts</Typography>
+        <Typography paragraph>
+            This is the content for Accounts.
+        </Typography>
+    </div>
+);
+
+// Component for LBT Reports
+const LbtReportsContent = () => (
+    <div>
+        <Typography variant="h5">LBT Reports</Typography>
+        <Typography paragraph>
+            This is the content for LBT Reports.
+        </Typography>
+    </div>
+);
+
+// Component for VAT Reports
+const VatReportsContent = () => (
+    <div>
+        <Typography variant="h5">VAT Reports</Typography>
+        <Typography paragraph>
+            This is the content for VAT Reports.
+        </Typography>
+    </div>
+);
+
+// Component for GST Reports
+const GstReportsContent = () => (
+    <div>
+        <Typography variant="h5">GST Reports</Typography>
+        <Typography paragraph>
+            This is the content for GST Reports.
+        </Typography>
+    </div>
+);
+
+const combinedItems = [
+    { text: 'Masters', icon: <HomeIcon />, content: <MastersContent /> },
+    { text: 'Sales', icon: <StorefrontIcon />, content: <SalesContent /> },
+    { text: 'Purchase', icon: <ShoppingBasketIcon />, content: <PurchaseContent /> },
+    { text: 'Expiry', icon: <EventNoteIcon />, content: <ExpiryContent /> },
+    { text: 'Purchase Order', icon: <AssignmentIcon />, content: <PurchaseOrderContent /> },
+    { text: 'Stock', icon: <LayersIcon />, content: <StockContent /> },
+    { text: 'Accounts', icon: <AccountBalanceIcon />, content: <AccountsContent /> },
+    { text: 'LBT Reports', icon: <DescriptionIcon />, content: <LbtReportsContent /> },
+    { text: 'VAT Reports', icon: <AssessmentIcon />, content: <VatReportsContent /> },
+    { text: 'GST Reports', icon: <AssignmentTurnedInIcon />, content: <GstReportsContent /> },
+];
 
 export default function ReportsPage() {
-    const navigate = useNavigate();
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    // Click handler for each item
+    function handleItemClick(itemText) {
+        setSelectedItem(itemText);
+    }
+
+    // Combined list of items with icons
 
 
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
     return (
-        <Stack spacing={1}>
-            <ButtonAppBar />
-            {/* For variant="text", adjust the height via font-size */}
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={1} md={12}>
-                    </Grid>
-                    <Grid item xs={5} md={12}>
-                        <Item>
-                            <Grid container spacing={2} justifyContent={'space-between'} >
-                                <ComboBox />
-                                <Button variant="text">MEMO No : C 1234</Button>
-                                <Button variant="text">Cash ₹ 0.00</Button>
-                                <Button variant="text">Date: 23/03/2024</Button>
-                                <ButtonGroup variant="secondary" aria-label="Small button group">
-                                    <Button variant="text">Stock</Button>
-                                    <Button variant="outlined">0</Button>
-                                    <Button variant="contained">0</Button>
-                                </ButtonGroup>
-                            </Grid>
-                        </Item>
-                    </Grid>
-                </Grid>
+        <Box sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+                <Toolbar>
+                    <Typography variant="h6" noWrap component="div">
+                        Clipped drawer
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                variant="permanent"
+                sx={{
+                    width: drawerWidth,
+                    flexShrink: 0,
+                    [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+                }}
+            >
+                <Toolbar />
+                <Box sx={{ overflow: 'auto', backgroundColor: '#f0f0f0' }}>
+                    <List>
+                        {combinedItems.map((item) => (
+                            <ListItem key={item.text} disablePadding onClick={() => handleItemClick(item.text)} sx={{ '&:hover': { backgroundColor: '#e0e0e0' } }}>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        {item.icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={item.text} />
+                                </ListItemButton>
+                            </ListItem>
+                        ))}
+                    </List>
+                </Box>
+            </Drawer>
+<>
+            <Box
+                component="main"
+                sx={{
+                    height: '35vw',
+                    width: '80vw',
+                    backgroundColor: '#ffffff',
+                    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+                }}
+                id="reportsListCompo"
+            >
+                <Toolbar />
+                {selectedItem ? combinedItems.find(item => item.text === selectedItem).content : <Typography>Select an item from the sidebar</Typography>}
             </Box>
-            <EnhancedTable />
-            <Grid container spacing={0}>
-                <Grid item xs={4} md={6} >
-                <Grid container spacing={1}>
-                    <Item>
-                        <TextField
-                            required
-                            id="outlined-required"
-                            label="Patient Name"
-                            size="small"
-                            fullWidth
-                        />
-                    </Item>
-                    <Item>
-                        <TextField
-                            id="outlined-required"
-                            label="Patient Address"
-                            size="small"
-                            fullWidth
-                        />
-                    </Item>
-                    <Item  >
-                        <TextField
-                            id="outlined-required"
-                            label="Phone No"
-                            size="small"
-                        />
-                        <TextField
-                            id="outlined-required"
-                            label="Patient City"
-                            size="small"
-                            defaultValue="Amravati"
-                        />
-                    </Item>
-                    <Item>
-                        <TextField
-                            id="outlined-required"
-                            label="Doctor Name"
-                            size="small"
-                        />
-                        <TextField
-                            id="outlined-required"
-                            label="Docter City"
-                            size="small"
-                            defaultValue="Amravati"
-                        />
-                            <FormControl  sx={{ minWidth: 120 }}>
-                                <InputLabel id="demo-simple-select-label">MOP</InputLabel> 
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={age}
-                                    label="MOP"
-                                    size="small"
-                                    onChange={handleChange}
-                                >
-                                    <MenuItem value={"Cash"}>Cash</MenuItem>
-                                    <MenuItem value={"UPI"}>UPI</MenuItem>
-                                    <MenuItem value={"Credit"}>Credit</MenuItem>
-                                </Select>
-                            </FormControl>
-                    </Item>
-                </Grid></Grid>
-                <Grid item xs={6} md={6}>
-                    <Item>
-                    <DenseTable />
-                    </Item>
-                </Grid>
-            </Grid>
-
-        </Stack>
+            </>
+        </Box>
     );
+
 }
