@@ -23,6 +23,10 @@ export function MainListItems() {
     console.log("abcs")
     navigate("/main_window");
   }
+  function onProductEntryClick(){
+    console.log("abcs")
+    navigate("/main_window/ProductEntry");
+  }
 
   return (
     <React.Fragment>
@@ -32,11 +36,11 @@ export function MainListItems() {
         </ListItemIcon>
         <ListItemText primary="Dasboard" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton onClick={onProductEntryClick}>
         <ListItemIcon>
           <ShoppingCartIcon />
         </ListItemIcon>
-        <ListItemText primary="Medicine" />
+        <ListItemText primary="Product Entry" />
       </ListItemButton>
       <ListItemButton>
         <ListItemIcon>

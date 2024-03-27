@@ -199,7 +199,7 @@ const navigate = useNavigate();
                     <Toolbar />
                     {selectedItem ? combinedItems.find(item => item.text === selectedItem).content : <Typography>Select an item from the sidebar</Typography>}
                 </Box>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, p: 2 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, p: 3 }}>
                     {/* Second Content */}
                     <TextField
                         label="Date"
@@ -246,7 +246,7 @@ const navigate = useNavigate();
                     <Autocomplete
                         options={['Option 1', 'Option 2', 'Option 3']}
                         renderInput={(params) => (
-                            <TextField {...params} label="Autocomplete" sx={{ width: 'calc(33.33% - 8px)' }} /> // Three items in a row
+                            <TextField {...params} label="Autocomplete" sx={{ width: 'calc(33.33% )' }} /> // Three items in a row
                         )}
                     />
                 </Box>
