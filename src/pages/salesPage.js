@@ -80,14 +80,14 @@ export default function SalesPage() {
         <Stack spacing={2}>
             <ButtonAppBar />
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={1} alignItems="center">
-                    <Grid item xs={11} md={3}>
+                <Grid container spacing={2} alignItems="center">
+                    <Grid item xs={12} md={4}>
                             <ComboBox /> {/* Assume this is a styled select component */}
                     </Grid>
-                    <Grid item xs={11} md={2}>
+                    <Grid item xs={12} md={2}>
                         <Button variant="text" fullWidth>MEMO No : C 1234</Button>
                     </Grid>
-                    <Grid item xs={11} md={2}>
+                    <Grid item xs={12} md={2}>
                         <Button variant="text" fullWidth>Cash ₹ 0.00</Button>
                     </Grid>
                     <Grid item xs={12} md={2}>
@@ -103,11 +103,10 @@ export default function SalesPage() {
                 </Grid>
             </Box>
             <EnhancedTable />
-            <Grid container spacing={0.5}> {/* Adjusted spacing for outer Grid container */}
-                <Grid item xs={12} md={11}> {/* Adjusted for responsiveness */}
-                    <Grid container spacing={2}>
-                        
-                        <Grid item xs={12}> {/* Each form field is a Grid item for better control */}
+            <Grid container spacing={1}> {/* Adjusted spacing for outer Grid container */}
+                <Grid item xs={12} md={11} > {/* Adjusted for responsiveness */}
+                    <Grid container spacing={2} >                        
+                        <Grid item xs={6} > {/* Each form field is a Grid item for better control */}
                             <TextField
                                 required
                                 id="outlined-required-patient-name"
@@ -117,7 +116,7 @@ export default function SalesPage() {
                                 variant="outlined"
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <TextField
                                 id="outlined-required-patient-address"
                                 label="Patient Address"
@@ -164,7 +163,7 @@ export default function SalesPage() {
                                 variant="outlined"
                             />
                         </Grid>
-                        <Grid item xs={12} md={6}>
+                        <Grid item xs={6}>
                             <FormControl fullWidth size="small" variant="outlined">
                                 <InputLabel id="demo-simple-select-label">Payment Mode</InputLabel>
                                 <Select
