@@ -13,6 +13,11 @@ const createWindow = () => {
     height: 900,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+      nodeIntegration: true, // Make sure this is set according to your needs
+            contextIsolation: false, // Make sure this is set according to your needs
+            sandbox: false, // Disable sandboxing to allow setting CSP headers
+            webSecurity: false, // Disable web security to allow local WebSocket connections
+            contentSecurityPolicy: "connect-src 'self' ws://localhost:3000", 
     },
   });
 
