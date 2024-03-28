@@ -22,42 +22,14 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import SalesContent from '../components/reportsPage/salesContent';
+import MastersContent from '../components/reportsPage/mastersContent';
+import ExpiryContent from '../components/reportsPage/expiryContent';
+import PurchaseContent from '../components/reportsPage/purchaseContent';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 const drawerWidth = 240;
-
-// Component for Masters
-const MastersContent = () => (
-    <div>
-        <Typography variant="h5">Masters</Typography>
-        <Typography paragraph>
-            This is the content for Masters.
-        </Typography>
-    </div>
-);
-
-
-// Component for Purchase
-const PurchaseContent = () => (
-    <div>
-        <Typography variant="h5">Purchase</Typography>
-        <Typography paragraph>
-            This is the content for Purchase.
-        </Typography>
-    </div>
-);
-
-// Component for Expiry
-const ExpiryContent = () => (
-    <div>
-        <Typography variant="h5">Expiry</Typography>
-        <Typography paragraph>
-            This is the content for Expiry.
-        </Typography>
-    </div>
-);
 
 // Component for Purchase Order
 const PurchaseOrderContent = () => (
@@ -142,8 +114,6 @@ const navigate = useNavigate();
     function onClickClose(){
         navigate("/main_window/DashBoard");
     }
-    // Combined list of items with icons
-
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -199,57 +169,80 @@ const navigate = useNavigate();
                     <Toolbar />
                     {selectedItem ? combinedItems.find(item => item.text === selectedItem).content : <Typography>Select an item from the sidebar</Typography>}
                 </Box>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, p: 3 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, p: 2 }}>
                     {/* Second Content */}
                     <TextField
-                        label="Date"
+                        label="From Date"
                         type="date"
                         defaultValue="2024-03-25"
-                        sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                        sx={{ width: 'calc(30.33% - 8px)' }} // Three items in a row
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        size='small'
                     />
                     <TextField
-                        label="Date"
+                        label="To Date"
                         type="date"
                         defaultValue="2024-03-25"
-                        sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                        sx={{ width: 'calc(30.33% - 8px)' }} // Three items in a row
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        size='small'
+                    />
+                    
+                    <Autocomplete
+                        options={['Option 1', 'Option 2', 'Option 3']}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Shelf/Rack" sx={{ width: '20vh' }} /> // Three items in a row
+                        )}
+                        size='small'
+                    />
+                    
+                    <Autocomplete
+                        options={['Option 1', 'Option 2', 'Option 3']}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Sub Category" sx={{ width: '20vh' }} /> // Three items in a row
+                        )}
+                        size='small'
                     />
                     <TextField
-                        label="Text"
-                        sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                        label="A/C Head"
+                        sx={{ width: 'calc(30.33% - 8px)' }} // Three items in a row
+                        size='small'
                     />
                     <TextField
-                        label="Text"
-                        sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                        label="Manufacturer"
+                        sx={{ width: 'calc(30.33% - 8px)' }} // Three items in a row
+                        size='small'
                     />
                     <TextField
-                        label="Text"
+                        label="Product"
                         sx={{ width: 'calc(33.33% - 8px)' }} // Three items in a row
+                        size='small'
                     />
                     <Autocomplete
                         options={['Option 1', 'Option 2', 'Option 3']}
                         renderInput={(params) => (
-                            <TextField {...params} label="Autocomplete" sx={{ width: 'calc(33.33% - 8px)' }} /> // Three items in a row
+                            <TextField {...params} label="Item Type" sx={{ width: '20vh' }} /> // Three items in a row
                         )}
+                        size='small'
                     />
-                    <Autocomplete
-                        options={['Option 1', 'Option 2', 'Option 3']}
-                        renderInput={(params) => (
-                            <TextField {...params} label="Autocomplete" sx={{ width: 'calc(33.33% - 8px)' }} /> // Three items in a row
-                        )}
-                    />
-                    <Autocomplete
-                        options={['Option 1', 'Option 2', 'Option 3']}
-                        renderInput={(params) => (
-                            <TextField {...params} label="Autocomplete" sx={{ width: 'calc(33.33% )' }} /> // Three items in a row
-                        )}
-                    />
+                    <Button variant="outlined" color="secondary" style={{ marginLeft: '32vw' }} onClick={onClickClose}>
+                            Cancel
+                        </Button>
+                     <Button type="submit" variant="contained" color="primary">
+                            Show
+                        </Button>
+                        <Button variant="contained" color="secondary" style={{ marginLeft: 8 }}  >
+                            Print
+                        </Button>
+                        <Button variant="outlined" color="primary" style={{ marginLeft: 8 }} onClick={onClickClose}>
+                            Exit
+                        </Button>
                 </Box>
+                
             </Box>
         </Box>
     );
