@@ -77,84 +77,102 @@ export default function SalesPage() {
         setAge(event.target.value);
     };
     return (
-        <Stack spacing={1}>
+        <Stack spacing={2}>
             <ButtonAppBar />
-            {/* For variant="text", adjust the height via font-size */}
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={1} md={12}>
-                    </Grid>
-                    <Grid item xs={5} md={12}>
+                <Grid container spacing={2} alignItems="center">
+                    <Grid item xs={12} md={3}>
                         <Item>
-                            <Grid container spacing={2} justifyContent={'space-between'} >
-                                <ComboBox />
-                                <Button variant="text">MEMO No : C 1234</Button>
-                                <Button variant="text">Cash ₹ 0.00</Button>
-                                <Button variant="text">Date: 23/03/2024</Button>
-                                <ButtonGroup variant="secondary" aria-label="Small button group">
-                                    <Button variant="text">Stock</Button>
-                                    <Button variant="outlined">0</Button>
-                                    <Button variant="contained">0</Button>
-                                </ButtonGroup>
-                            </Grid>
+                            <ComboBox /> {/* Assume this is a styled select component */}
                         </Item>
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Button variant="text" fullWidth>MEMO No : C 1234</Button>
+                    </Grid>
+                    <Grid item xs={12} md={2}>
+                        <Button variant="text" fullWidth>Cash ₹ 0.00</Button>
+                    </Grid>
+                    <Grid item xs={12} md={2}>
+                        <Button variant="text" fullWidth>Date: 23/03/2024</Button>
+                    </Grid>
+                    <Grid item xs={12} md={2}>
+                        <ButtonGroup variant="secondary" aria-label="Small button group" fullWidth>
+                            <Button variant="text">Stock</Button>
+                            <Button variant="outlined">0</Button>
+                            <Button variant="contained">0</Button>
+                        </ButtonGroup>
                     </Grid>
                 </Grid>
             </Box>
             <EnhancedTable />
-            <Grid container spacing={0}>
-                <Grid item xs={4} md={6} >
-                <Grid container spacing={1}>
-                    <Item>
-                        <TextField
-                            required
-                            id="outlined-required"
-                            label="Patient Name"
-                            size="small"
-                            fullWidth
-                        />
-                    </Item>
-                    <Item>
-                        <TextField
-                            id="outlined-required"
-                            label="Patient Address"
-                            size="small"
-                            fullWidth
-                        />
-                    </Item>
-                    <Item  >
-                        <TextField
-                            id="outlined-required"
-                            label="Phone No"
-                            size="small"
-                        />
-                        <TextField
-                            id="outlined-required"
-                            label="Patient City"
-                            size="small"
-                            defaultValue="Amravati"
-                        />
-                    </Item>
-                    <Item>
-                        <TextField
-                            id="outlined-required"
-                            label="Doctor Name"
-                            size="small"
-                        />
-                        <TextField
-                            id="outlined-required"
-                            label="Docter City"
-                            size="small"
-                            defaultValue="Amravati"
-                        />
-                            <FormControl  sx={{ minWidth: 120 }}>
-                                <InputLabel id="demo-simple-select-label">MOP</InputLabel> 
+            <Grid container spacing={2}> {/* Adjusted spacing for outer Grid container */}
+                <Grid item xs={12} md={6}> {/* Adjusted for responsiveness */}
+                    <Grid container spacing={2}> {/* Consistent spacing within nested Grid */}
+                        <Grid item xs={12}> {/* Each form field is a Grid item for better control */}
+                            <TextField
+                                required
+                                id="outlined-required-patient-name"
+                                label="Patient Name"
+                                size="small"
+                                fullWidth
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                id="outlined-required-patient-address"
+                                label="Patient Address"
+                                size="small"
+                                fullWidth
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField
+                                id="outlined-required-phone-no"
+                                label="Phone No"
+                                size="small"
+                                fullWidth
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField
+                                id="outlined-required-patient-city"
+                                label="Patient City"
+                                size="small"
+                                fullWidth
+                                defaultValue="Amravati"
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField
+                                id="outlined-required-doctor-name"
+                                label="Doctor Name"
+                                size="small"
+                                fullWidth
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField
+                                id="outlined-required-doctor-city"
+                                label="Doctor City"
+                                size="small"
+                                fullWidth
+                                defaultValue="Amravati"
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FormControl fullWidth size="small" variant="outlined">
+                                <InputLabel id="demo-simple-select-label">MOP</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={age}
                                     label="MOP"
-                                    size="small"
                                     onChange={handleChange}
                                 >
                                     <MenuItem value={"Cash"}>Cash</MenuItem>
@@ -162,12 +180,11 @@ export default function SalesPage() {
                                     <MenuItem value={"Credit"}>Credit</MenuItem>
                                 </Select>
                             </FormControl>
-                    </Item>
-                </Grid></Grid>
-                <Grid item xs={6} md={6}>
-                    <Item>
-                    <DenseTable />
-                    </Item>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <DenseTable /> {/* Ensure DenseTable component is properly styled for responsiveness */}
                 </Grid>
             </Grid>
 
