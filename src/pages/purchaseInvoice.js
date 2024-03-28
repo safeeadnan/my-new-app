@@ -1,97 +1,214 @@
-import React from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Button, Typography } from '@mui/material';
+import * as React from 'react';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
 
-const PurchaseInvoiceComponent = () => {
-  // You might want to handle state and functions here
-  
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import { top100Films } from '../components/combobox';
+import EnhancedTable from '../components/enhancedTable';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import DenseTable from '../components/denseTable';
+import Autocomplete from '@mui/material/Autocomplete';
+
+
+
+export function ButtonAppBar() {
+  const navigate = useNavigate();
+  function onCancelClick() {
+    console.log("abcs")
+    navigate("/main_window/Dashboard");
+  }
+
   return (
-    <Paper elevation={3} sx={{ padding: 2 }}>
-      <Typography variant="h6">Purchase Invoice / Delivery Memo</Typography>
-      <TableContainer component={Paper}>
-        <Table aria-label="invoice table">
-          <TableHead>
-            <TableRow>
-              <TableCell>PRODUCT NAME</TableCell>
-              <TableCell align="right">QTY</TableCell>
-              <TableCell align="right">RATE</TableCell>
-              <TableCell align="right">DISC %</TableCell>
-              <TableCell align="right">BATCH NO</TableCell>
-              <TableCell align="right">EXP</TableCell>
-              <TableCell align="right">MRP</TableCell>
-              {/* Add other headers as needed */}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-
-                      {/* Rows can be dynamically created based on state or props */}
-          <TableRow>
-            <TableCell component="th" scope="row">
-              <TextField size="small" />
-            </TableCell>
-            <TableCell align="right">
-              <TextField size="small" type="number" />
-            </TableCell>
-            <TableCell align="right">
-              <TextField size="small" type="number" />
-            </TableCell>
-            <TableCell align="right">
-              <TextField size="small" type="number" />
-            </TableCell>
-            <TableCell align="right">
-              <TextField size="small" />
-            </TableCell>
-            <TableCell align="right">
-              <TextField size="small" type="date" />
-            </TableCell>
-            <TableCell align="right">
-              <TextField size="small" type="number" />
-            </TableCell>
-            {/* Add other cells as needed */}
-          </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <div style={{ marginTop: 20 }}>
-        <TextField
-          label="Narration / Particulars"
-          multiline
-          rows={4}
-          fullWidth
-          margin="normal"
-        />
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 20 }}>
-        <div>
-          <Typography variant="subtitle1">Net Amount</Typography>
-          <TextField
-            label="Net Amount"
-            size="small"
-            type="number"
-            margin="normal"
-          />
-        </div>
-        <div>
-          <Typography variant="subtitle1">Discount</Typography>
-          <TextField
-            label="Discount"
-            size="small"
-            type="number"
-            margin="normal"
-          />
-        </div>
-        {/* Add other summary fields as needed */}
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 20 }}>
-        <Button variant="contained" color="primary">
-          Save Invoice
-        </Button>
-      </div>
-    </Paper>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Expiry / Purchase Return / Breakage
+          </Typography>
+          <ButtonGroup variant="secondary" aria-label="Small button group">
+            <Button onClick={onCancelClick}>Cancel</Button>
+            <Button>Show Items</Button>
+            <Button>Expiry</Button>
+            <Button>Delete</Button>
+            <Button>Modify</Button>
+            <Button>RePrn</Button>
+            <Button>Save</Button>
+            <Button>Exit</Button>
+          </ButtonGroup>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
-};
+}
 
-export default PurchaseInvoiceComponent;
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
-          
+export default function SalesPage() {
+  const navigate = useNavigate();
+  const [age, setAge] = React.useState('');
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
+  return (
+    <Stack spacing={1}>
+      <ButtonAppBar />
+      {/* For variant="text", adjust the height via font-size */}
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={1} md={12}>
+          </Grid>
+          <Grid item xs={5} md={12}>
+            <Item>
+              <Grid container spacing={2} justifyContent={'space-between'} >
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={top100Films}
+                  sx={{ width: 300 }}
+                  renderInput={(params) => <TextField {...params} label="Supplier Name"
+size='small'
+                  />}
+                />
+                 <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={top100Films}
+                  sx={{ width: '40vh' }}
+                  renderInput={(params) => <TextField {...params} label="Product Name"
+size='small'
+                  />}
+                />
+                <Autocomplete
+                        options={['Expiry', 'Option 2', 'Option 3']}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Item Type" sx={{ width: '20vh' }} /> // Three items in a row
+                        )}
+                        size='small'
+                    />
+                    <TextField
+                        label="Loss %"
+                        sx={{ width:  '10vh' }} // Three items in a row
+                        size='small'
+                        type="number"
+                    />
+                    <TextField
+                        label="Inv No"
+                        sx={{ width:  '10vh' }} // Three items in a row
+                        size='small'
+                        type="number"
+                    />
+                    <TextField
+                        label="Date"
+                        type="date"
+                        defaultValue="2024-03-25"
+                        sx={{ width: '25vh' }} // Three items in a row
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        size='small'
+                    />
+                <ButtonGroup variant="secondary" aria-label="Small button group">
+                  <Button variant="text">Stock</Button>
+                  <Button variant="outlined">0</Button>
+                  <Button variant="contained">0</Button>
+                </ButtonGroup>
+              </Grid>
+            </Item>
+          </Grid>
+        </Grid>
+      </Box>
+      <EnhancedTable />
+      <Grid container spacing={0}>
+        <Grid item xs={4} md={6} >
+          <Grid container spacing={1}>
+            <Item>
+              <TextField
+                required
+                id="outlined-required"
+                label="Patient Name"
+                size="small"
+                fullWidth
+              />
+            </Item>
+            <Item>
+              <TextField
+                id="outlined-required"
+                label="Patient Address"
+                size="small"
+                fullWidth
+              />
+            </Item>
+            <Item  >
+              <TextField
+                id="outlined-required"
+                label="Phone No"
+                size="small"
+              />
+              <TextField
+                id="outlined-required"
+                label="Patient City"
+                size="small"
+                defaultValue="Amravati"
+              />
+            </Item>
+            <Item>
+              <TextField
+                id="outlined-required"
+                label="Doctor Name"
+                size="small"
+              />
+              <TextField
+                id="outlined-required"
+                label="Docter City"
+                size="small"
+                defaultValue="Amravati"
+              />
+              <FormControl sx={{ minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-label">MOP</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={age}
+                  label="MOP"
+                  size="small"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"Cash"}>Cash</MenuItem>
+                  <MenuItem value={"UPI"}>UPI</MenuItem>
+                  <MenuItem value={"Credit"}>Credit</MenuItem>
+                </Select>
+              </FormControl>
+            </Item>
+          </Grid></Grid>
+        <Grid item xs={6} md={6}>
+          <Item>
+            <DenseTable />
+          </Item>
+        </Grid>
+      </Grid>
 
+    </Stack>
+  );
+}
