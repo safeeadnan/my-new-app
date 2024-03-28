@@ -20,8 +20,9 @@ function App() {
         <Route path="/main_window/Dashboard" element={<Dashboard />} />
         <Route path="/main_window/SalesPage" element={<SalesPage />} />
         <Route path="/main_window/Reports" element={<ReportsPage />} />
-        
+        <Route path="/main_window/Purchase" element={<PurchaseInvoice />} />
         <Route path="/main_window/ProductEntry" element={<ProductEntryForm />} />
+        <Route exact path="/" element={<SignIn />} />
       </Routes>
     </Router>
   );

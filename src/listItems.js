@@ -27,6 +27,10 @@ export function MainListItems() {
     console.log("abcs")
     navigate("/main_window/ProductEntry");
   }
+  function onPurchaseClick(){
+    console.log("abcs")
+    navigate("/main_window/Purchase");
+  }
 
   return (
     <React.Fragment>
@@ -54,7 +58,7 @@ export function MainListItems() {
         </ListItemIcon>
         <ListItemText primary="Sales" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton onClick={onPurchaseClick}>
         <ListItemIcon>
           <LayersIcon />
         </ListItemIcon>
