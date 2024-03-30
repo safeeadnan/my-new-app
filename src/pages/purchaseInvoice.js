@@ -139,24 +139,27 @@ export default function SalesPage() {
           </Grid>
         </Grid>
       </Box>
-      <MyTable />
+      <div style={{ height: '65vh', overflow: 'auto' }}>
+        <MyTable />
+      </div>
       <Grid container spacing={0}>
         <Grid item xs={4} md={6} >
-          <Grid container spacing={1}>
-            <Grid container spacing={1}>
-              <Grid item xs={12} md={8} lg={6}>
+        <Grid item xs={12} md={8} lg={6}>
                 <TextField
                   id="outlined-read-only-naration"
                   label="Narration"
                   defaultValue = "ABC"
                   InputProps={{
-                    readOnly: true,
+                    // readOnly: true,
                   }}
                   variant="outlined"
                   size="small"
                   fullWidth
                 />
               </Grid>
+          <Grid container spacing={1}>
+            <Grid container spacing={1}>
+              
               <Grid item xs={12} md={4} lg={3}>
                 <FormControl fullWidth size="small" variant="outlined">
                   <InputLabel id="demo-simple-select-label">Status</InputLabel>
