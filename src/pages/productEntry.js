@@ -56,7 +56,7 @@ function ProductEntryForm() {
 
     function onClickExit() {
         console.log("abs")
-        setCurrentPage("/main_window/DashBoard");
+        setCurrentPage("/main_window/Dashboard");
 
     }
 

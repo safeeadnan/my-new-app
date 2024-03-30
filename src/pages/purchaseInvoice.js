@@ -23,6 +23,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import DenseTable from '../components/denseTable';
 import Autocomplete from '@mui/material/Autocomplete';
+import MyTable from '../components/myTable';
 
 
 
@@ -138,7 +139,7 @@ export default function SalesPage() {
           </Grid>
         </Grid>
       </Box>
-      <EnhancedTable />
+      <MyTable />
       <Grid container spacing={0}>
         <Grid item xs={4} md={6} >
           <Grid container spacing={1}>
