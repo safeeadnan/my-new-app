@@ -2,7 +2,7 @@ import * as React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { useNavigate } from "react-router-dom";
+import useRouteStore from '../store/routerStore'; // Import Zustand store for routing
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -27,10 +27,10 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 
 export function ButtonAppBar() {
-  const navigate = useNavigate();
+  const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
   function onCancelClick() {
     console.log("abcs")
-    navigate("/main_window/Dashboard");
+    setCurrentPage("/main_window/Dashboard");
   }
 
   return (
@@ -65,7 +65,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function SalesPage() {
-  const navigate = useNavigate();
   const [age, setAge] = React.useState('');
   const handleChange = (event) => {
     setAge(event.target.value);

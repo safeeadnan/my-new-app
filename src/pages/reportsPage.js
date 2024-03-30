@@ -26,9 +26,9 @@ import MastersContent from '../components/reportsPage/mastersContent';
 import ExpiryContent from '../components/reportsPage/expiryContent';
 import PurchaseContent from '../components/reportsPage/purchaseContent';
 import Autocomplete from '@mui/material/Autocomplete';
-import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import useRouteStore from '../store/routerStore'; // Import Zustand store for routing
 const drawerWidth = 240;
 
 // Component for Purchase Order
@@ -106,13 +106,13 @@ const combinedItems = [
 
 export default function ReportsPage() {
     const [selectedItem, setSelectedItem] = useState(null);
-const navigate = useNavigate();
+const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
     // Click handler for each item
     function handleItemClick(itemText) {
         setSelectedItem(itemText);
     }
     function onClickClose(){
-        navigate("/main_window/DashBoard");
+        setCurrentPage("/main_window/DashBoard");
     }
 
     return (

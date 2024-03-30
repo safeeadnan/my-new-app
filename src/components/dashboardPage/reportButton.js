@@ -1,13 +1,12 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { useNavigate } from "react-router-dom";
 import AssessmentIcon from '@mui/icons-material/Assessment'; // Importing the Assessment icon
-
+import useRouteStore from '../../store/routerStore';
 
 export default function ReportMenu() {
-    const navigate = useNavigate();
+    const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
     const handleClick = () => {
-        navigate("/main_window/Reports");
+        setCurrentPage('/main_window/Reports');
     };
 
     return (

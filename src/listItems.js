@@ -9,27 +9,27 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import { useNavigate } from "react-router-dom";
+import useRouteStore from './store/routerStore';
 
 export function MainListItems() {
-  const navigate = useNavigate();
+  const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
 
   function onSalesClick(){
     console.log("abcs")
-    navigate("/main_window/SalesPage");
+    setCurrentPage('/main_window/SalesPage');
   }
 
   function onDashboardClick(){
     console.log("abcs")
-    navigate("/main_window");
+    setCurrentPage("/main_window/Dashboard");
   }
   function onProductEntryClick(){
     console.log("abcs")
-    navigate("/main_window/ProductEntry");
+    setCurrentPage("/main_window/ProductEntry");
   }
   function onPurchaseClick(){
     console.log("abcs")
-    navigate("/main_window/Purchase");
+    setCurrentPage("/main_window/Purchase");
   }
 
   return (

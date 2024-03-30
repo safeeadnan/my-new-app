@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container, TextField, Button, Grid, MenuItem, Typography, FormControlLabel, Checkbox, Autocomplete, FormControl, InputLabel, Select } from '@mui/material';
-import { useNavigate } from "react-router-dom";
+import useRouteStore from '../store/routerStore'; // Import Zustand store for routing
 
 function ProductEntryForm() {
 
 
     // useEffect(()=>{
-        const navigate = useNavigate();
+        const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
     // },[])
     
     const initialState = {
@@ -56,7 +56,7 @@ function ProductEntryForm() {
 
     function onClickExit() {
         console.log("abs")
-        navigate("/main_window/DashBoard");
+        setCurrentPage("/main_window/DashBoard");
 
     }
 
