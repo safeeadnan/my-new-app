@@ -17,18 +17,18 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
-import { drawerWidth } from './dashboard.jsx';
-import { MainListItems, secondaryListItems } from './listItems';
-import ResponsiveAppBar from './navbar.js';
-import AdministrationMenu from './components/dashboardPage/administrationMenu.js';
-import AccountsMenu  from './components/dashboardPage/accountsMenu.js';
-import MasterMenu from './components/dashboardPage/masterMenu.js';
-import TransactionMenu from './components/dashboardPage/transactionMenu.js';
-import ToolsMenu from './components/dashboardPage/toolsMenu.js';
-import ReportMenu from './components/dashboardPage/reportButton.js';
+import Chart from '../../Chart.js';
+import Deposits from '../../Deposits.js';
+import Orders from '../../Orders.js';
+import { drawerWidth } from '../../pages/dashboard.jsx';
+import { MainListItems, secondaryListItems } from '../../listItems.js';
+import ResponsiveAppBar from '../../navbar.js';
+import AdministrationMenu from './administrationMenu.js';
+import AccountsMenu  from './accountsMenu.js';
+import MasterMenu from './masterMenu.js';
+import TransactionMenu from './transactionMenu.js';
+import ToolsMenu from './toolsMenu.js';
+import ReportMenu from './reportButton.js';
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({

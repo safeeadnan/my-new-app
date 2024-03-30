@@ -65,7 +65,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function SalesPage() {
+export default function ExpiryPage() {
   const [age, setAge] = React.useState('');
   const handleChange = (event) => {
     setAge(event.target.value);

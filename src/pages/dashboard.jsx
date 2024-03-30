@@ -4,8 +4,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import DashboardContent from './dashboardContent.jsx';
-import SideBar from './sidebar.js';
+import DashboardContent from '../components/dashboardPage/dashboardContent.jsx';
+import SideBar from '../components/dashboardPage/sidebar.js';
 
 export function Copyright(props) {
   return (

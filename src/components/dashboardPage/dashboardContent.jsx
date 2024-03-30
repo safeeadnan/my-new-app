@@ -17,15 +17,25 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
-import { Copyright } from './dashboard.jsx';
+import Chart from '../../Chart';
+import Deposits from '../../Deposits';
+import Orders from '../../Orders';
+
+
+export function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 export default function DashboardContent() {
-
-
-
     return(
         <Box
           component="main"

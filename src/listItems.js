@@ -29,7 +29,7 @@ export function MainListItems() {
   }
   function onPurchaseClick(){
     console.log("abcs")
-    setCurrentPage("/main_window/Purchase");
+    setCurrentPage("/main_window/Expiry");
   }
 
   return (

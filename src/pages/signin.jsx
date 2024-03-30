@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import useRouteStore from './store/routerStore'; // Import Zustand store for routing
+import useRouteStore from '../store/routerStore'; // Import Zustand store for routing
 
 function SignIn() {
   const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
@@ -20,7 +20,7 @@ function SignIn() {
       password: data.get('password'),
     });
 
-    // Assuming "safee" is the correct username for redirecting to the dashboard
+    // Assuming "a" is the correct username for redirecting to the dashboard
     if ("a" === data.get('userName')) {
       setCurrentPage('/main_window/Dashboard');
     }
