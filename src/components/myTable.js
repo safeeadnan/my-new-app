@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-function generateRandomData() {
+export function generateRandomData() {
   const data = [];
   for (let i = 1; i <= 20; i++) {
     const randomQty = Math.floor(Math.random() * 100) + 1;

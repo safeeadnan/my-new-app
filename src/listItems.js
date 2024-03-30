@@ -29,6 +29,10 @@ export function MainListItems() {
   }
   function onPurchaseClick(){
     console.log("abcs")
+    setCurrentPage("/main_window/Purchase");
+  }
+  function onExpiryClick(){
+    console.log("abcs")
     setCurrentPage("/main_window/Expiry");
   }
 
@@ -46,11 +50,11 @@ export function MainListItems() {
         </ListItemIcon>
         <ListItemText primary="Product Entry" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton onClick={onExpiryClick}>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Sale Record" />
+        <ListItemText primary="Expiry" />
       </ListItemButton>
       <ListItemButton onClick={onSalesClick}>
         <ListItemIcon>
