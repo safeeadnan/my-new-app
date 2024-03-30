@@ -88,47 +88,47 @@ export default function SalesPage() {
                   options={top100Films}
                   sx={{ width: 300 }}
                   renderInput={(params) => <TextField {...params} label="Supplier Name"
-size='small'
+                    size='small'
                   />}
                 />
-                 <Autocomplete
+                <Autocomplete
                   disablePortal
                   id="combo-box-demo"
                   options={top100Films}
                   sx={{ width: '40vh' }}
                   renderInput={(params) => <TextField {...params} label="Product Name"
-size='small'
+                    size='small'
                   />}
                 />
                 <Autocomplete
-                        options={['Expiry', 'Option 2', 'Option 3']}
-                        renderInput={(params) => (
-                            <TextField {...params} label="Item Type" sx={{ width: '20vh' }} /> // Three items in a row
-                        )}
-                        size='small'
-                    />
-                    <TextField
-                        label="Loss %"
-                        sx={{ width:  '10vh' }} // Three items in a row
-                        size='small'
-                        type="number"
-                    />
-                    <TextField
-                        label="Inv No"
-                        sx={{ width:  '10vh' }} // Three items in a row
-                        size='small'
-                        type="number"
-                    />
-                    <TextField
-                        label="Date"
-                        type="date"
-                        defaultValue="2024-03-25"
-                        sx={{ width: '25vh' }} // Three items in a row
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        size='small'
-                    />
+                  options={['Expiry', 'Option 2', 'Option 3']}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Item Type" sx={{ width: '20vh' }} /> // Three items in a row
+                  )}
+                  size='small'
+                />
+                <TextField
+                  label="Loss %"
+                  sx={{ width: '10vh' }} // Three items in a row
+                  size='small'
+                  type="number"
+                />
+                <TextField
+                  label="Inv No"
+                  sx={{ width: '10vh' }} // Three items in a row
+                  size='small'
+                  type="number"
+                />
+                <TextField
+                  label="Date"
+                  type="date"
+                  defaultValue="2024-03-25"
+                  sx={{ width: '25vh' }} // Three items in a row
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  size='small'
+                />
                 <ButtonGroup variant="secondary" aria-label="Small button group">
                   <Button variant="text">Stock</Button>
                   <Button variant="outlined">0</Button>
@@ -143,69 +143,52 @@ size='small'
       <Grid container spacing={0}>
         <Grid item xs={4} md={6} >
           <Grid container spacing={1}>
-            <Item>
-              <TextField
-                required
-                id="outlined-required"
-                label="Patient Name"
-                size="small"
-                fullWidth
-              />
-            </Item>
-            <Item>
-              <TextField
-                id="outlined-required"
-                label="Patient Address"
-                size="small"
-                fullWidth
-              />
-            </Item>
-            <Item  >
-              <TextField
-                id="outlined-required"
-                label="Phone No"
-                size="small"
-              />
-              <TextField
-                id="outlined-required"
-                label="Patient City"
-                size="small"
-                defaultValue="Amravati"
-              />
-            </Item>
-            <Item>
-              <TextField
-                id="outlined-required"
-                label="Doctor Name"
-                size="small"
-              />
-              <TextField
-                id="outlined-required"
-                label="Docter City"
-                size="small"
-                defaultValue="Amravati"
-              />
-              <FormControl sx={{ minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-label">MOP</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={age}
-                  label="MOP"
+            <Grid container spacing={1}>
+              <Grid item xs={12} md={8} lg={6}>
+                <TextField
+                  id="outlined-read-only-naration"
+                  label="Narration"
+                  defaultValue = "ABC"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  variant="outlined"
                   size="small"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={"Cash"}>Cash</MenuItem>
-                  <MenuItem value={"UPI"}>UPI</MenuItem>
-                  <MenuItem value={"Credit"}>Credit</MenuItem>
-                </Select>
-              </FormControl>
-            </Item>
-          </Grid></Grid>
-        <Grid item xs={6} md={6}>
-          <Item>
-            <DenseTable />
-          </Item>
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12} md={4} lg={3}>
+                <FormControl fullWidth size="small" variant="outlined">
+                  <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={age}
+                    label="Status"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={"Cash"}>Cash</MenuItem>
+                    <MenuItem value={"UPI"}>UPI</MenuItem>
+                    <MenuItem value={"Credit"}>Credit</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} md={4} lg={3}>
+                <TextField
+                  id="outlined-read-only-amount"
+                  label="Amount"
+                  defaultValue="0.00"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+
+          </Grid>
         </Grid>
       </Grid>
 
