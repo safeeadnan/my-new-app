@@ -90,7 +90,6 @@ const SupplierModal = ({ open, onClose, onAddSupplier }) => {
 export default function PurchasePage() {
   const [type, setType] = React.useState('');
   const [invDmNo, setInvDmNo] = React.useState('');
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [data, setData] = useState([]);
   const [formData, setFormData] = useState({
     productName: '',
@@ -114,6 +113,14 @@ export default function PurchasePage() {
   const [supplierModalOpen, setSupplierModalOpen] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
   const [supplierOptions, setSupplierOptions] = useState(['Supplier 1', 'Supplier 2', 'Supplier 3']);
+  const currentDate = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+  const [selectedDate, setSelectedDate] = React.useState(currentDate);
+  
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
+
 
   const handleAddSupplier = (supplier) => {
     setSelectedSupplier(supplier);
@@ -164,13 +171,14 @@ export default function PurchasePage() {
     setType(event.target.value);
   };
 
-  const handleInvDmNoChange = (event) => {
-    setInvDmNo(event.target.value);
+  const handleInvDmNoChange = (event, value) => {
+    if (value) {
+      setInvDmNo(value);
+    } else if (event && event.target && event.target.value) {
+      setInvDmNo(event.target.value);
+    }
   };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   return (
     <Stack spacing={2}>
@@ -213,14 +221,15 @@ export default function PurchasePage() {
             </FormControl>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Autocomplete
-              disablePortal
-              id="inv-dm-no"
-              options={['Option 1', 'Option 2']}
-              renderInput={(params) => <TextField {...params} label="Inv/Dm No" />}
-              onChange={(event, value) => handleInvDmNoChange(value)}
-              size='small'
-            />
+          <Autocomplete
+    disablePortal
+    id="inv-dm-no"
+    options={['Option 1', 'Option 2']}
+    renderInput={(params) => <TextField {...params} label="Inv/Dm No" />}
+    onChange={(event, value) => handleInvDmNoChange(value)}
+    size='small'
+    freeSolo  // Allow free input
+  />
           </Grid>
           <Grid item xs={12} md={2}>
             <TextField
