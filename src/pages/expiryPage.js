@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import useRouteStore from '../store/routerStore'; // Import Zustand store for routing
 
+import SaveIcon from '@mui/icons-material/Save';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -24,6 +25,7 @@ import Select from '@mui/material/Select';
 import DenseTable from '../components/denseTable';
 import Autocomplete from '@mui/material/Autocomplete';
 import MyTable from '../components/myTable';
+import ExpiryTable from '../components/expiryPage/expiryTable';
 
 
 
@@ -33,7 +35,6 @@ export function ButtonAppBar() {
     console.log("abcs")
     setCurrentPage("/main_window/Dashboard");
   }
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -49,7 +50,7 @@ export function ButtonAppBar() {
             <Button>Modify</Button>
             <Button>RePrn</Button>
             <Button>Save</Button>
-            <Button>Exit</Button>
+            <Button onClick={onCancelClick}>Exit</Button>
           </ButtonGroup>
         </Toolbar>
       </AppBar>
@@ -74,7 +75,6 @@ export default function ExpiryPage() {
   return (
     <Stack spacing={1}>
       <ButtonAppBar />
-      {/* For variant="text", adjust the height via font-size */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={1} md={12}>
@@ -140,60 +140,62 @@ export default function ExpiryPage() {
         </Grid>
       </Box>
       <div style={{ height: '65vh', overflow: 'auto' }}>
-        <MyTable />
+        <ExpiryTable />
       </div>
-      <Grid container spacing={0}>
-        <Grid item xs={4} md={6} >
-        <Grid item xs={12} md={8} lg={6}>
-                <TextField
-                  id="outlined-read-only-naration"
-                  label="Narration"
-                  defaultValue = "ABC"
-                  InputProps={{
-                    // readOnly: true,
-                  }}
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                />
-              </Grid>
-          <Grid container spacing={1}>
-            <Grid container spacing={1}>
-              
-              <Grid item xs={12} md={4} lg={3}>
-                <FormControl fullWidth size="small" variant="outlined">
-                  <InputLabel id="demo-simple-select-label">Status</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="Status"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={"Cash"}>Cash</MenuItem>
-                    <MenuItem value={"UPI"}>UPI</MenuItem>
-                    <MenuItem value={"Credit"}>Credit</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} md={4} lg={3}>
-                <TextField
-                  id="outlined-read-only-amount"
-                  label="Amount"
-                  defaultValue="0.00"
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                />
-              </Grid>
-            </Grid>
+      <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} justifyContent="center" alignItems="center" spacing={0}>
+        <Box  sx={{ width: '98vw', display: 'flex' }}>
+          <Box width={{ xs: 1, md: 1 / 2 }} marginRight={{ md: 1 }}>
+            <TextField
+              id="outlined-read-only-narration"
+              label="Narration"
+              defaultValue="ABC"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                // readOnly: true,
+              }}
+            />
+          </Box>
+          <Box width={{ xs: 1, md: 1 / 4 }} marginRight={{ md: 1 }}>
+            <FormControl fullWidth size="small" variant="outlined">
+              <InputLabel id="demo-simple-select-label">Status</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={status}
+                label="Status"
+                // onChange={handleStatusChange}
+              >
+                <MenuItem value={"Cash"}>Cash</MenuItem>
+                <MenuItem value={"UPI"}>UPI</MenuItem>
+                <MenuItem value={"Credit"}>Credit</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          <Box width={{ xs: 1, md: 1 / 4 }}>
+            <TextField
+              id="outlined-read-only-amount"
+              label="Amount"
+              defaultValue="0.00"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+          </Box>
+          <Button
+              variant="contained"
+              startIcon={<SaveIcon/>}
+              size='small'
+            >
+              Save
+            </Button>
+        </Box>
+      </Box>
 
-          </Grid>
-        </Grid>
-      </Grid>
 
     </Stack>
   );
