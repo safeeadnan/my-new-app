@@ -12,6 +12,7 @@ import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import PurchaseTable from '../components/purchasePage/purchaseTable';
 import { generateRandomData } from '../components/purchasePage/utils';
+import SaveIcon from '@mui/icons-material/Save';
 
 export default function PurchasePage() {
   const [type, setType] = React.useState('');
@@ -274,15 +275,37 @@ export default function PurchasePage() {
 
 
           </Box>
-          <Box sx={{ width: '100%', 
-    height: '50%',
-    border: '1px solid black',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center' }}> <Typography variant="body1" fontWeight="bold" align="center">Sale Value 0.00 0.00</Typography></Box>
+          <Box sx={{
+            width: '100%',
+            height: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}> <Typography variant="body1" fontWeight="bold" align="center">Sale Value 0.00 0.00</Typography></Box>
         </Box>
-        <Box sx={{ width: '25%', border: '1px solid black' }}>Second Box</Box>
-        <Box sx={{ width: '25%', border: '1px solid black' }}>Third Box</Box>
+        <Box sx={{
+          width: '50%', display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gridTemplateRows: 'repeat(4, 1fr)'
+        }}
+        >
+          <TextField label="Total Amount" size='small' />
+          <TextField label="discount" size='small' />
+          <TextField label="Scheme Discount" size='small' />
+          <TextField label="Credit Note" size='small' />
+
+          <TextField label="Debit Note" size='small' />
+          <TextField label="S Tax Total" size='small' />
+          <TextField label="Net Amount" size='small' />
+            <Button
+              variant="contained"
+              startIcon={<SaveIcon />}
+              size='small'
+            >
+              Save
+            </Button>
+        </Box>
+
       </Box>
     </Stack>
   );
