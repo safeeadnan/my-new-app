@@ -14,6 +14,7 @@ import PurchaseTable from '../components/purchasePage/purchaseTable';
 import { generateRandomData } from '../components/purchasePage/utils';
 import SaveIcon from '@mui/icons-material/Save';
 import useRouteStore from '../store/routerStore';
+import PurchaseAppBar from '../components/purchasePage/purchaseAppBar';
 
 export default function PurchasePage() {
   const [type, setType] = React.useState('');
@@ -92,20 +93,7 @@ export default function PurchasePage() {
 
   return (
     <Stack spacing={2}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Purchase Invoice / Delivery Memo
-          </Typography>
-          <ButtonGroup variant="contained" color="primary" aria-label="Small button group">
-            <Button>Imp Bill</Button>
-            <Button>Pending DM</Button>
-            <Button>ConvDM</Button>
-            <Button>Save</Button>
-            <Button onClick={onCancelClick}>Exit</Button>
-          </ButtonGroup>
-        </Toolbar>
-      </AppBar>
+      <PurchaseAppBar onCancelClick={onCancelClick} />
       <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} md={3}>

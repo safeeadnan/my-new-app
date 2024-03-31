@@ -17,10 +17,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MyTable from '../components/myTable';
-import PatientTable from '../components/patientTable';
 
 export function ButtonAppBar() {
-
     const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
     function onCancelClick() {
         console.log("abcs")
@@ -30,11 +28,10 @@ export function ButtonAppBar() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Cash / Credit Memo
                     </Typography>
-                    <ButtonGroup variant="secondary" aria-label="Small button group">
+                    <ButtonGroup variant="contained" color="primary" aria-label="Small button group">
                         <Button onClick={onCancelClick}>Cancel</Button>
                         <Button>Event</Button>
                         <Button>Search</Button>
@@ -46,7 +43,7 @@ export function ButtonAppBar() {
                         <Button>D to C</Button>
                         <Button>Scan</Button>
                         <Button>Save</Button>
-                        <Button>Exit</Button>
+                        <Button onClick={onCancelClick}>Exit</Button>
                     </ButtonGroup>
 
                 </Toolbar>
@@ -75,7 +72,13 @@ export default function SalesPage() {
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs={12} md={4}>
-                        <ComboBox /> {/* Assume this is a styled select component */}
+                    <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={['Option 1', 'Option 2']}
+              renderInput={(params) => <TextField {...params} label="Product Name" />}
+              size='small'
+            /> 
                     </Grid>
                     <Grid item xs={12} md={2}>
                         <Button variant="text" fullWidth>MEMO No : C 1234</Button>
@@ -118,7 +121,7 @@ export default function SalesPage() {
                                     id="outlined-required-phone-no"
                                     label="Phone No"
                                     size="small"
-                                    fullWidth
+                                    
                                     variant="outlined"
                                 />
                             </Grid>
@@ -127,7 +130,7 @@ export default function SalesPage() {
                                     id="outlined-required-doctor-name"
                                     label="Doctor Name"
                                     size="small"
-                                    fullWidth
+                                    
                                     variant="outlined"
                                 />
                             </Grid>
@@ -136,7 +139,7 @@ export default function SalesPage() {
                                     id="outlined-required-patient-address"
                                     label="Patient Address"
                                     size="small"
-                                    fullWidth
+                                    
                                     variant="outlined"
                                 />
                             </Grid>
@@ -145,7 +148,7 @@ export default function SalesPage() {
                                     id="outlined-required-patient-city"
                                     label="Patient City"
                                     size="small"
-                                    fullWidth
+                                    
                                     defaultValue="Amravati"
                                     variant="outlined"
                                 />
@@ -155,7 +158,7 @@ export default function SalesPage() {
                                     id="outlined-required-doctor-city"
                                     label="Doctor City"
                                     size="small"
-                                    fullWidth
+                                    
                                     defaultValue="Amravati"
                                     variant="outlined"
                                 />
