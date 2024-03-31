@@ -11,7 +11,6 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ComboBox from '../components/combobox';
-import EnhancedTable from '../components/enhancedTable';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -70,7 +69,7 @@ export default function SalesPage() {
         setAge(event.target.value);
     };
     return (
-        <Stack spacing={2}>
+        <Stack spacing={0.5}>
             <ButtonAppBar />
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2} alignItems="center">
@@ -95,115 +94,150 @@ export default function SalesPage() {
                     </Grid>
                 </Grid>
             </Box>
-            <div style={{ height: '45vh', overflow: 'auto' }}>
+            <div style={{ height: '38vh', overflow: 'auto' }}>
                 <MyTable />
             </div>
-            <Grid container spacing={1}> {/* Adjusted spacing for outer Grid container */}
-                <Grid item xs={12} md={11} > {/* Adjusted for responsiveness */}
-                    <Grid container spacing={2} >
-                        <Grid item xs={6} > {/* Each form field is a Grid item for better control */}
-                            <TextField
-                                required
-                                id="outlined-required-patient-name"
-                                label="Patient Name"
-                                size="small"
-                                fullWidth
-                                variant="outlined"
-                            />
+            <div style={{ height: '30vh', marginTop: '20px' }}>
+
+                <Grid container spacing={1}>
+                    <Grid item xs={12} md={8}>
+                        <Grid container spacing={1} >
+                            <Grid item xs={12}md={8}>
+                                <TextField
+                                    required
+                                    id="outlined-required-patient-name"
+                                    label="Patient Name"
+                                    size="small"
+                                    fullWidth
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12}md={8}>
+                                <TextField
+                                    id="outlined-required-phone-no"
+                                    label="Phone No"
+                                    size="small"
+                                    fullWidth
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12}md={8}>
+                                <TextField
+                                    id="outlined-required-doctor-name"
+                                    label="Doctor Name"
+                                    size="small"
+                                    fullWidth
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12}md={8}>
+                                <TextField
+                                    id="outlined-required-patient-address"
+                                    label="Patient Address"
+                                    size="small"
+                                    fullWidth
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12}md={8}>
+                                <TextField
+                                    id="outlined-required-patient-city"
+                                    label="Patient City"
+                                    size="small"
+                                    fullWidth
+                                    defaultValue="Amravati"
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12}md={8}>
+                                <TextField
+                                    id="outlined-required-doctor-city"
+                                    label="Doctor City"
+                                    size="small"
+                                    fullWidth
+                                    defaultValue="Amravati"
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={6}md={8}>
+                                <FormControl fullWidth size="small" variant="outlined">
+                                    <InputLabel id="demo-simple-select-label">Payment Mode</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={age}
+                                        label="Payment Mode"
+                                        onChange={handleChange}
+                                    >
+                                        <MenuItem value={"Cash"}>Cash</MenuItem>
+                                        <MenuItem value={"UPI"}>UPI</MenuItem>
+                                        <MenuItem value={"Credit"}>Credit</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+
                         </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                id="outlined-required-patient-address"
-                                label="Patient Address"
-                                size="small"
-                                fullWidth
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                id="outlined-required-phone-no"
-                                label="Phone No"
-                                size="small"
-                                fullWidth
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                id="outlined-required-patient-city"
-                                label="Patient City"
-                                size="small"
-                                fullWidth
-                                defaultValue="Amravati"
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                id="outlined-required-doctor-name"
-                                label="Doctor Name"
-                                size="small"
-                                fullWidth
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                id="outlined-required-doctor-city"
-                                label="Doctor City"
-                                size="small"
-                                fullWidth
-                                defaultValue="Amravati"
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <FormControl fullWidth size="small" variant="outlined">
-                                <InputLabel id="demo-simple-select-label">Payment Mode</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={age}
-                                    label="Payment Mode"
-                                    onChange={handleChange}
-                                >
-                                    <MenuItem value={"Cash"}>Cash</MenuItem>
-                                    <MenuItem value={"UPI"}>UPI</MenuItem>
-                                    <MenuItem value={"Credit"}>Credit</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={3}>
-                            <TextField
-                                id="outlined-read-only-total-items"
-                                label="Total Items"
-                                defaultValue="0"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                                variant="outlined"
-                                size="small"
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <TextField
-                                id="outlined-read-only-total-amount"
-                                label="Total Amount"
-                                defaultValue="0.00"
-                                InputProps={{
-                                    readOnly: true,
-                                }}
-                                variant="outlined"
-                                size="small"
-                                fullWidth
-                            />
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={6}>
+                                <TextField
+                                    id="outlined-read-only-total-items"
+                                    label="Total Items"
+                                    defaultValue="0"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    variant="outlined"
+                                    size="small"
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    id="outlined-read-only-total-amount"
+                                    label="Total Amount"
+                                    defaultValue="0.00"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    variant="outlined"
+                                    size="small"
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    id="outlined-read-only-amount-paid"
+                                    label="Paid Amount"
+                                    defaultValue="0.00"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    variant="outlined"
+                                    size="small"
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    id="outlined-read-only-total-balance"
+                                    label="Balance Amount"
+                                    defaultValue="0.00"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    variant="outlined"
+                                    size="small"
+                                    fullWidth
+                                />
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
+            </div>
 
-        </Stack>
+            </Stack>
     );
 }
+
