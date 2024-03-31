@@ -269,12 +269,17 @@ export default function PurchasePage() {
           <Box sx={{ width: '100%', height: '25%', display: 'flex' }}>
 
             <Box sx={{ width: '100%', height: '50%' }}>
-            <TextField label="Narration"   size='small' fullWidth />
+              <TextField label="Narration" size='small' fullWidth />
             </Box>
-            
+
 
           </Box>
-          <Box sx={{ width: '100%', height: '50%', border: '1px solid black' }}> <Typography variant="body1" fontWeight="bold">Sale Value 0.00 0.00</Typography></Box>
+          <Box sx={{ width: '100%', 
+    height: '50%',
+    border: '1px solid black',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center' }}> <Typography variant="body1" fontWeight="bold" align="center">Sale Value 0.00 0.00</Typography></Box>
         </Box>
         <Box sx={{ width: '25%', border: '1px solid black' }}>Second Box</Box>
         <Box sx={{ width: '25%', border: '1px solid black' }}>Third Box</Box>
