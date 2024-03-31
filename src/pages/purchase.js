@@ -113,10 +113,16 @@ export default function PurchasePage() {
   const [supplierModalOpen, setSupplierModalOpen] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
   const [supplierOptions, setSupplierOptions] = useState(['Supplier 1', 'Supplier 2', 'Supplier 3']);
-  const currentDate = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+  const [selectedDate, setSelectedDate] = useState(getFormattedDate());
 
-  const [selectedDate, setSelectedDate] = React.useState(currentDate);
-  
+  function getFormattedDate() {
+    const today = new Date();
+    const day = today.getDate().toString().padStart(2, '0');
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const year = today.getFullYear().toString();
+    return `${day}-${month}-${year}`;
+  }
+
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
   };
@@ -233,16 +239,17 @@ export default function PurchasePage() {
           </Grid>
           <Grid item xs={12} md={2}>
             <TextField
-              id="date"
-              label="Date"
-              type="date"
-              value={selectedDate}
-              onChange={handleDateChange}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              size='small'
-            />
+      id="date"
+      label="Date"
+      type="date"
+      defaultValue={selectedDate}
+      onChange={handleDateChange}
+      InputLabelProps={{
+        shrink: true,
+      }}
+      size="small"
+      InputProps={{ inputProps: { max: getFormattedDate() } }}
+    />
           </Grid>
         </Grid>
 
