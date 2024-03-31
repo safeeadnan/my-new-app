@@ -15,6 +15,36 @@ import { generateRandomData } from '../components/purchasePage/utils';
 import SaveIcon from '@mui/icons-material/Save';
 import useRouteStore from '../store/routerStore';
 import PurchaseAppBar from '../components/purchasePage/purchaseAppBar';
+import Modal from '@mui/material/Modal';
+
+
+const SupplierModal = ({ open, onClose, onAddSupplier }) => {
+  const [selectedSupplier, setSelectedSupplier] = useState(null);
+
+  const handleAddSupplier = () => {
+    if (selectedSupplier) {
+      onAddSupplier(selectedSupplier);
+      onClose();
+    }
+  };
+
+  return (
+    <Modal open={open} onClose={onClose}>
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px' }}>
+        <Autocomplete
+          options={['Supplier 1', 'Supplier 2', 'Supplier 3']} // Example options
+          value={selectedSupplier}
+          onChange={(event, newValue) => {
+            setSelectedSupplier(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} label="Supplier" />}
+        />
+        <Button onClick={handleAddSupplier}>Add</Button>
+        <Button onClick={onClose}>Cancel</Button>
+      </div>
+    </Modal>
+  );
+};
 
 export default function PurchasePage() {
   const [type, setType] = React.useState('');
@@ -37,7 +67,17 @@ export default function PurchasePage() {
     mrp: 0,
     rack: '',
   });
+  
     const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
+
+    const [supplierModalOpen, setSupplierModalOpen] = useState(false);
+    const [selectedSupplier, setSelectedSupplier] = useState(null);
+    const [supplierOptions, setSupplierOptions] = useState(['Supplier 1', 'Supplier 2', 'Supplier 3']);
+  
+    const handleAddSupplier = (supplier) => {
+      setSelectedSupplier(supplier);
+      setSupplierOptions([...supplierOptions, supplier]); // Add the selected supplier to the options array
+    };
     function onCancelClick() {
         console.log("abcs")
         setCurrentPage("/main_window/Dashboard");
@@ -97,13 +137,22 @@ export default function PurchasePage() {
       <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} md={3}>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={['Option 1', 'Option 2']}
-              renderInput={(params) => <TextField {...params} label="Supplier" />}
-              size='small'
-            />
+          <div onClick={() => setSupplierModalOpen(true)}>
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={supplierOptions}
+          value={selectedSupplier}
+          onChange={(event, newValue) => setSelectedSupplier(newValue)}
+          renderInput={(params) => <TextField {...params} label="Supplier" />}
+          size='small'
+        />
+      </div>
+      <SupplierModal
+        open={supplierModalOpen}
+        onClose={() => setSupplierModalOpen(false)}
+        onAddSupplier={handleAddSupplier}
+      />
           </Grid>
           <Grid item xs={12} md={2}>
             <Typography variant="body1" fontWeight="bold">13200.00₹</Typography>
