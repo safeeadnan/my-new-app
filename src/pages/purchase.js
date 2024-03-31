@@ -13,6 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import PurchaseTable from '../components/purchasePage/purchaseTable';
 import { generateRandomData } from '../components/purchasePage/utils';
 import SaveIcon from '@mui/icons-material/Save';
+import useRouteStore from '../store/routerStore';
 
 export default function PurchasePage() {
   const [type, setType] = React.useState('');
@@ -35,6 +36,11 @@ export default function PurchasePage() {
     mrp: 0,
     rack: '',
   });
+    const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
+    function onCancelClick() {
+        console.log("abcs")
+        setCurrentPage("/main_window/Dashboard");
+    }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -96,7 +102,7 @@ export default function PurchasePage() {
             <Button>Pending DM</Button>
             <Button>ConvDM</Button>
             <Button>Save</Button>
-            <Button>Exit</Button>
+            <Button onClick={onCancelClick}>Exit</Button>
           </ButtonGroup>
         </Toolbar>
       </AppBar>

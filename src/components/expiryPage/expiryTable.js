@@ -32,7 +32,7 @@ export function generateRandomData() {
   return data;
 }
 
-function MyTable() {
+function ExpiryTable() {
   const [data, setData] = useState(generateRandomData());
 
   const handleDelete = (id) => {
@@ -90,4 +90,4 @@ function MyTable() {
   );
 }
 
-export default MyTable;
+export default ExpiryTable;

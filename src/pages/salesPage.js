@@ -234,17 +234,17 @@ export default function SalesPage() {
                                 </Grid>
                             </Grid>
                         </Grid>
-
+                        
                     </Grid>
                     <Grid item xs={6} md={6}>
-                        <div style={{ height: '38vh', overflow: 'auto' }}>
-                            <PatientTable />
-                        </div>
+                      <div style={{ height: '38vh', overflow: 'auto' }}>
+                <PatientTable />
+            </div>
                     </Grid>
                 </Grid>
-
+                
             </div>
-
+            
         </Stack>
     );
 }
