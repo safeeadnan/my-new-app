@@ -34,7 +34,7 @@ export default function PurchasePage() {
     mrp: 0,
     rack: '',
   });
- 
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     let formattedValue = value;
@@ -99,7 +99,7 @@ export default function PurchasePage() {
           </ButtonGroup>
         </Toolbar>
       </AppBar>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} md={3}>
             <Autocomplete
@@ -210,13 +210,80 @@ export default function PurchasePage() {
             </IconButton>
           </Grid>
         </Grid>
-
-        <Grid item xs={24}>
+        <Box sx={{ maxHeight: '44vh', overflowY: 'auto' }}>
           <PurchaseTable data={data} handleDelete={handleDelete} />
-        </Grid>
-
+        </Box>
+        <Box />
       </Box>
-      
+      <Box sx={{ height: '29vh', width: '98vw', display: 'flex' }}>
+        <Box sx={{ width: '50%' }}>
+          <Box sx={{ width: '100%', height: '25%', display: 'flex' }}>
+
+            <Box sx={{ width: '20%', height: '50%' }}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={['Option 1', 'Option 2']}
+                renderInput={(params) => <TextField {...params} label="PurEntryNo" />}
+                size='small'
+              />
+            </Box>
+            <Box sx={{ width: '20%', height: '50%' }}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={['Option 1', 'Option 2']}
+                renderInput={(params) => <TextField {...params} label="Rack/Shelf" />}
+                size='small'
+              />
+            </Box>
+            <Box sx={{ width: '20%', height: '50%' }}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={['Option 1', 'Option 2']}
+                renderInput={(params) => <TextField {...params} label="Net Amount" />}
+                size='small'
+              />
+            </Box>
+            <Box sx={{ width: '20%', height: '50%' }}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={['Option 1', 'Option 2']}
+                renderInput={(params) => <TextField {...params} label="Disc%" />}
+                size='small'
+              />
+            </Box>
+            <Box sx={{ width: '20%', height: '50%' }}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={['Option 1', 'Option 2']}
+                renderInput={(params) => <TextField {...params} label="Cash/Credit" />}
+                size='small'
+              />
+            </Box>
+
+          </Box>
+          <Box sx={{ width: '100%', height: '25%', display: 'flex' }}>
+
+            <Box sx={{ width: '100%', height: '50%' }}>
+              <TextField label="Narration" size='small' fullWidth />
+            </Box>
+
+
+          </Box>
+          <Box sx={{ width: '100%', 
+    height: '50%',
+    border: '1px solid black',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center' }}> <Typography variant="body1" fontWeight="bold" align="center">Sale Value 0.00 0.00</Typography></Box>
+        </Box>
+        <Box sx={{ width: '25%', border: '1px solid black' }}>Second Box</Box>
+        <Box sx={{ width: '25%', border: '1px solid black' }}>Third Box</Box>
+      </Box>
     </Stack>
   );
 }

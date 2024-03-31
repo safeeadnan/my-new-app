@@ -5,7 +5,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export default function PurchaseTable({ data, handleDelete }) {
     return (
-      <TableContainer component={Paper} sx={{ padding: 0, width: '100vw' }}>
+      <TableContainer component={Paper} sx={{ padding: 0, width: '98vw' }}>
         <Table  size="small">
           <TableHead  >
             <TableRow>
