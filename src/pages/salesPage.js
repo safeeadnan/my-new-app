@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MyTable from '../components/myTable';
+import PatientTable from '../components/patientTable';
 
 export function ButtonAppBar() {
 
@@ -97,12 +98,12 @@ export default function SalesPage() {
             <div style={{ height: '38vh', overflow: 'auto' }}>
                 <MyTable />
             </div>
-            <div style={{ height: '30vh', marginTop: '20px' }}>
+            <div style={{ height: '30vh', marginTop: '10px' }}>
 
                 <Grid container spacing={1}>
-                    <Grid item xs={12} md={8}>
+                    <Grid item xs={6} md={6}>
                         <Grid container spacing={1} >
-                            <Grid item xs={12}md={8}>
+                            <Grid item xs={6} md={6}>
                                 <TextField
                                     required
                                     id="outlined-required-patient-name"
@@ -112,7 +113,7 @@ export default function SalesPage() {
                                     variant="outlined"
                                 />
                             </Grid>
-                            <Grid item xs={12}md={8}>
+                            <Grid item xs={6} md={6}>
                                 <TextField
                                     id="outlined-required-phone-no"
                                     label="Phone No"
@@ -121,7 +122,7 @@ export default function SalesPage() {
                                     variant="outlined"
                                 />
                             </Grid>
-                            <Grid item xs={12}md={8}>
+                            <Grid item xs={6} md={6}>
                                 <TextField
                                     id="outlined-required-doctor-name"
                                     label="Doctor Name"
@@ -130,7 +131,7 @@ export default function SalesPage() {
                                     variant="outlined"
                                 />
                             </Grid>
-                            <Grid item xs={12}md={8}>
+                            <Grid item xs={6} md={6}>
                                 <TextField
                                     id="outlined-required-patient-address"
                                     label="Patient Address"
@@ -139,7 +140,7 @@ export default function SalesPage() {
                                     variant="outlined"
                                 />
                             </Grid>
-                            <Grid item xs={12}md={8}>
+                            <Grid item xs={6} md={6}>
                                 <TextField
                                     id="outlined-required-patient-city"
                                     label="Patient City"
@@ -149,7 +150,7 @@ export default function SalesPage() {
                                     variant="outlined"
                                 />
                             </Grid>
-                            <Grid item xs={12}md={8}>
+                            <Grid item xs={6} md={6}>
                                 <TextField
                                     id="outlined-required-doctor-city"
                                     label="Doctor City"
@@ -159,7 +160,7 @@ export default function SalesPage() {
                                     variant="outlined"
                                 />
                             </Grid>
-                            <Grid item xs={6}md={8}>
+                            <Grid item xs={6} md={6}>
                                 <FormControl fullWidth size="small" variant="outlined">
                                     <InputLabel id="demo-simple-select-label">Payment Mode</InputLabel>
                                     <Select
@@ -176,68 +177,75 @@ export default function SalesPage() {
                                 </FormControl>
                             </Grid>
 
+                            <Grid item xs={6} md={6}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            id="outlined-read-only-total-items"
+                                            label="Total Items"
+                                            defaultValue="0"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+                                            variant="outlined"
+                                            size="small"
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            id="outlined-read-only-total-amount"
+                                            label="Total Amount"
+                                            defaultValue="0.00"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+                                            variant="outlined"
+                                            size="small"
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            id="outlined-read-only-amount-paid"
+                                            label="Paid Amount"
+                                            defaultValue="0.00"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+                                            variant="outlined"
+                                            size="small"
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            id="outlined-read-only-total-balance"
+                                            label="Balance Amount"
+                                            defaultValue="0.00"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+                                            variant="outlined"
+                                            size="small"
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
                         </Grid>
+
                     </Grid>
-                    <Grid item xs={12} md={3}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                                <TextField
-                                    id="outlined-read-only-total-items"
-                                    label="Total Items"
-                                    defaultValue="0"
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-                                    variant="outlined"
-                                    size="small"
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    id="outlined-read-only-total-amount"
-                                    label="Total Amount"
-                                    defaultValue="0.00"
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-                                    variant="outlined"
-                                    size="small"
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    id="outlined-read-only-amount-paid"
-                                    label="Paid Amount"
-                                    defaultValue="0.00"
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-                                    variant="outlined"
-                                    size="small"
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    id="outlined-read-only-total-balance"
-                                    label="Balance Amount"
-                                    defaultValue="0.00"
-                                    InputProps={{
-                                        readOnly: true,
-                                    }}
-                                    variant="outlined"
-                                    size="small"
-                                    fullWidth
-                                />
-                            </Grid>
-                        </Grid>
+                    <Grid item xs={6} md={6}>
+                        <div style={{ height: '38vh', overflow: 'auto' }}>
+                            <PatientTable />
+                        </div>
                     </Grid>
                 </Grid>
+
             </div>
 
-            </Stack>
+        </Stack>
     );
 }
 
