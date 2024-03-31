@@ -4,6 +4,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 //.js extension to de deta bhai    < /TableCell> ye galat hai < / joint hona dono bina space ke
 
+// areee long 
 
 export function generateRandomData() {
   const data = [];
