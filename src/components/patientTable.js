@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
 //.js extension to de deta bhai    < /TableCell> ye galat hai < / joint hona dono bina space ke
 
 // areee long 
@@ -35,7 +33,7 @@ export default function PatientTable() {
 
   return (
     <TableContainer component={Paper}>
-     <Table>
+     <Table  size="small">
      <TableHead>
      <TableRow>
      <TableCell>user </TableCell> 
@@ -55,9 +53,6 @@ export default function PatientTable() {
       < TableCell > { row.billNo } </TableCell>
       < TableCell > { row.amount } </TableCell>
       < TableCell >
-      <IconButton aria-label="delete" color = "secondary" onClick = {() => handleDelete(row.id)}>
-        <DeleteOutlineIcon />
-        </IconButton>
         </TableCell>
         </TableRow>
           ))
