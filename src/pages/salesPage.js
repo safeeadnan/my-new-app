@@ -17,6 +17,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MyTable from '../components/myTable';
+import PatientTable from '../components/patientTable';
+import { Autocomplete } from '@mui/material';
 
 export function ButtonAppBar() {
     const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
@@ -101,9 +103,9 @@ export default function SalesPage() {
             <div style={{ height: '38vh', overflow: 'auto' }}>
                 <MyTable />
             </div>
-            <div style={{ height: '30vh', marginTop: '10px' }}>
+            <div style={{ height: '30vh', marginTop: '30px' }}>
 
-                <Grid container spacing={1}>
+                <Grid container spacing={2}>
                     <Grid item xs={6} md={6}>
                         <Grid container spacing={1} >
                             <Grid item xs={6} md={6}>
@@ -121,7 +123,7 @@ export default function SalesPage() {
                                     id="outlined-required-phone-no"
                                     label="Phone No"
                                     size="small"
-                                    
+                                    fullWidth
                                     variant="outlined"
                                 />
                             </Grid>
@@ -130,7 +132,7 @@ export default function SalesPage() {
                                     id="outlined-required-doctor-name"
                                     label="Doctor Name"
                                     size="small"
-                                    
+                                    fullWidth
                                     variant="outlined"
                                 />
                             </Grid>
@@ -139,7 +141,7 @@ export default function SalesPage() {
                                     id="outlined-required-patient-address"
                                     label="Patient Address"
                                     size="small"
-                                    
+                                    fullWidth
                                     variant="outlined"
                                 />
                             </Grid>
@@ -148,7 +150,7 @@ export default function SalesPage() {
                                     id="outlined-required-patient-city"
                                     label="Patient City"
                                     size="small"
-                                    
+                                    fullWidth
                                     defaultValue="Amravati"
                                     variant="outlined"
                                 />
@@ -158,7 +160,7 @@ export default function SalesPage() {
                                     id="outlined-required-doctor-city"
                                     label="Doctor City"
                                     size="small"
-                                    
+                                    fullWidth
                                     defaultValue="Amravati"
                                     variant="outlined"
                                 />
@@ -218,7 +220,7 @@ export default function SalesPage() {
                                             }}
                                             variant="outlined"
                                             size="small"
-                                            fullWidth
+                                            
                                         />
                                     </Grid>
                                     <Grid item xs={6}>
@@ -237,17 +239,17 @@ export default function SalesPage() {
                                 </Grid>
                             </Grid>
                         </Grid>
-
+                        
                     </Grid>
                     <Grid item xs={6} md={6}>
-                        <div style={{ height: '38vh', overflow: 'auto' }}>
-                            <PatientTable />
-                        </div>
+                      <div style={{ height: '38vh', overflow: 'auto' }}>
+                <PatientTable/>
+            </div>
                     </Grid>
                 </Grid>
-
+                
             </div>
-
+            
         </Stack>
     );
 }
