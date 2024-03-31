@@ -35,6 +35,10 @@ export function MainListItems() {
     console.log("abcs")
     setCurrentPage("/main_window/Expiry");
   }
+  function onTesterClick(){
+    console.log("abcs")
+    setCurrentPage("/main_window/Tester");
+  }
 
   return (
     <React.Fragment>
@@ -55,6 +59,12 @@ export function MainListItems() {
           <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Expiry" />
+      </ListItemButton>
+      <ListItemButton onClick={onTesterClick}>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="tester" />
       </ListItemButton>
       <ListItemButton onClick={onSalesClick}>
         <ListItemIcon>

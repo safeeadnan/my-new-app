@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
+  "proxy": "http://localhost:5000",
+
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",

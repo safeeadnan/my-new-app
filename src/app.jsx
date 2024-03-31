@@ -7,6 +7,7 @@ import ReportsPage from "./pages/reportsPage.js";
 import ProductEntryForm from "./pages/productEntry.js";
 import ExpiryPage from "./pages/expiryPage.js";
 import Purchase from "./pages/purchase.js";
+import Tester from "./pages/tester.js";
 
 function App() {
   const { currentPage, setCurrentPage } = useRouteStore();
@@ -35,6 +36,9 @@ function App() {
       break;
     case '/main_window/Expiry':
       content = <ExpiryPage />;
+      break;
+      case '/main_window/Tester':
+      content = <Tester />;
       break;
     case '/main_window/ProductEntry':
       content = <ProductEntryForm />;

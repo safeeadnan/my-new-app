@@ -1,41 +1,71 @@
 const { app, BrowserWindow } = require('electron');
-const path = require('node:path');
+const path = require('path');
+const { spawn } = require('child_process');
+const fs = require('fs');
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
-  app.quit();
-}
-
+// Function to create the Electron window
 const createWindow = () => {
-  // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1200,
     height: 900,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
-      nodeIntegration: true, // Make sure this is set according to your needs
-            contextIsolation: false, // Make sure this is set according to your needs
-            sandbox: false, // Disable sandboxing to allow setting CSP headers
-            webSecurity: false, // Disable web security to allow local WebSocket connections
-            contentSecurityPolicy: "connect-src 'self' ws://localhost:3000", 
+      nodeIntegration: true,
+      contextIsolation: false,
+    allowRunningInsecureContent: false,
+      sandbox: false,
+      webSecurity: true,
+      userData: path.join(app.getPath('userData'), 'myapp-cache'),
+      contentSecurityPolicy: "script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' http://localhost:5000 ws://localhost:3000;",
     },
   });
 
-  // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  // Open the DevTools.
-// mainWindow.webContents.openDevTools();
+  // Open the DevTools if needed
+  // mainWindow.webContents.openDevTools();
 };
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
+// Function to start the backend server
+const startBackendServer = () => {
+  // Specify the path to your backend server script
+  const backendServerPath = path.join(__dirname, '../../backend/server.js');
+
+  // Check if the file exists
+  if (!fs.existsSync(backendServerPath)) {
+    console.error('Backend server script not found:', backendServerPath);
+    return;
+  }
+
+  // Spawn a child process to run the backend server
+  const backendProcess = spawn('node', [backendServerPath]);
+
+  backendProcess.stdout.on('data', (data) => {
+    console.log(`Backend server stdout: ${data}`);
+  });
+
+  backendProcess.stderr.on('data', (data) => {
+    console.error(`Backend server stderr: ${data}`);
+  });
+
+  backendProcess.on('close', (code) => {
+    console.log(`Backend server process exited with code ${code}`);
+  });
+
+  backendProcess.on('error', (err) => {
+    console.error('Failed to start backend server:', err);
+  });
+};
+
+// Event listener for when Electron is ready
 app.whenReady().then(() => {
+  // Create the Electron window
   createWindow();
 
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
+  // Start the backend server
+  startBackendServer();
+
+  // On macOS, re-create a window when the dock icon is clicked and no other windows are open
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
@@ -43,14 +73,9 @@ app.whenReady().then(() => {
   });
 });
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
+// Quit the app when all windows are closed, except on macOS
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
