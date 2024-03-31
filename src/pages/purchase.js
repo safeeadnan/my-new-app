@@ -11,36 +11,77 @@ import { Autocomplete, FormControl, IconButton, TextField, InputLabel, Select, M
 import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import PurchaseTable from '../components/purchasePage/purchaseTable';
-import { generateRandomData } from '../components/purchasePage/utils';
 import SaveIcon from '@mui/icons-material/Save';
 import useRouteStore from '../store/routerStore';
 import PurchaseAppBar from '../components/purchasePage/purchaseAppBar';
 import Modal from '@mui/material/Modal';
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
 
 const SupplierModal = ({ open, onClose, onAddSupplier }) => {
-  const [selectedSupplier, setSelectedSupplier] = useState(null);
+  const [filterText, setFilterText] = useState('');
 
-  const handleAddSupplier = () => {
-    if (selectedSupplier) {
-      onAddSupplier(selectedSupplier);
-      onClose();
-    }
+  const handleAddSupplier = (name) => {
+    onAddSupplier(name);
+    onClose();
   };
+
+  // Dummy data for the table (replace it with your actual supplier data)
+  const supplierData = [
+    { name: 'Meedical ka naam jo bhot bada hai', address: 'usse bada adress itna badaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa isse bhi bada', city: 'City 1' },
+    { name: 'Supplier 2', address: '456 Street', city: 'City 2' },
+    { name: 'Supplier 3', address: '789 Street', city: 'City 3' },
+    { name: 'Meedical ka naam jo bhot bada hai', address: 'usse bada adress itna badaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa isse bhi bada', city: 'City 1' },
+    { name: 'Supplier 2', address: '456 Street', city: 'City 2' },
+    { name: 'Supplier 3', address: '789 Street', city: 'City 3' },
+    { name: 'Meedical ka naam jo bhot bada hai', address: 'usse bada adress itna badaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa isse bhi bada', city: 'City 1' },
+    { name: 'Supplier 2', address: '456 Street', city: 'City 2' },
+    { name: 'Supplier 3', address: '789 Street', city: 'City 3' },
+    { name: 'Meedical ka naam jo bhot bada hai', address: 'usse bada adress itna badaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa isse bhi bada', city: 'City 1' },
+    { name: 'Supplier 2', address: '456 Street', city: 'City 2' },
+    { name: 'Supplier 3', address: '789 Street', city: 'City 3' }, 
+    { name: 'Meedical ka naam jo bhot bada hai', address: 'usse bada adress itna badaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa isse bhi bada', city: 'City 1' },
+    { name: 'Supplier 2', address: '456 Street', city: 'City 2' },
+    { name: 'Supplier 3', address: '789 Street', city: 'City 3' }, 
+    { name: 'Meedical ka naam jo bhot bada hai', address: 'usse bada adress itna badaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa isse bhi bada', city: 'City 1' },
+    { name: 'Supplier 2', address: '456 Street', city: 'City 2' },
+    { name: 'Supplier 3', address: '789 Street', city: 'City 3' }, 
+    { name: 'Meedical ka naam jo bhot bada hai', address: 'usse bada adress itna badaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa isse bhi bada', city: 'City 1' },
+    { name: 'Supplier 2', address: '456 Street', city: 'City 2' },
+    { name: 'Supplier 3', address: '789 Street', city: 'City 3' },
+  ];
+
+  // Filter the rows based on the filterText
+  const filteredRows = supplierData.filter(supplier =>
+    supplier.name.toLowerCase().includes(filterText.toLowerCase())
+  );
 
   return (
     <Modal open={open} onClose={onClose}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px' }}>
-        <Autocomplete
-          options={['Supplier 1', 'Supplier 2', 'Supplier 3']} // Example options
-          value={selectedSupplier}
-          onChange={(event, newValue) => {
-            setSelectedSupplier(newValue);
-          }}
-          renderInput={(params) => <TextField {...params} label="Supplier" />}
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px', width: '80vw', maxHeight: '80vh', overflowY: 'auto' }}>
+        <TextField
+          label="Filter by Name"
+          value={filterText}
+          onChange={e => setFilterText(e.target.value)}
+          fullWidth
         />
-        <Button onClick={handleAddSupplier}>Add</Button>
-        <Button onClick={onClose}>Cancel</Button>
+        <TableContainer>
+          <Table>
+            <TableBody>
+              {filteredRows.map((supplier, index) => (
+                <TableRow key={index} onClick={() => handleAddSupplier(supplier.name)} style={{ cursor: 'pointer' }}>
+                  <TableCell>{supplier.name}</TableCell>
+                  <TableCell>{supplier.address}</TableCell>
+                  <TableCell>{supplier.city}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </Modal>
   );
@@ -50,7 +91,7 @@ export default function PurchasePage() {
   const [type, setType] = React.useState('');
   const [invDmNo, setInvDmNo] = React.useState('');
   const [selectedDate, setSelectedDate] = React.useState(new Date());
-  const [data, setData] = useState(generateRandomData());
+  const [data, setData] = useState([]);
   const [formData, setFormData] = useState({
     productName: '',
     qty: 0,
@@ -67,21 +108,21 @@ export default function PurchasePage() {
     mrp: 0,
     rack: '',
   });
-  
-    const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
 
-    const [supplierModalOpen, setSupplierModalOpen] = useState(false);
-    const [selectedSupplier, setSelectedSupplier] = useState(null);
-    const [supplierOptions, setSupplierOptions] = useState(['Supplier 1', 'Supplier 2', 'Supplier 3']);
-  
-    const handleAddSupplier = (supplier) => {
-      setSelectedSupplier(supplier);
-      setSupplierOptions([...supplierOptions, supplier]); // Add the selected supplier to the options array
-    };
-    function onCancelClick() {
-        console.log("abcs")
-        setCurrentPage("/main_window/Dashboard");
-    }
+  const setCurrentPage = useRouteStore((state) => state.setCurrentPage);
+
+  const [supplierModalOpen, setSupplierModalOpen] = useState(false);
+  const [selectedSupplier, setSelectedSupplier] = useState(null);
+  const [supplierOptions, setSupplierOptions] = useState(['Supplier 1', 'Supplier 2', 'Supplier 3']);
+
+  const handleAddSupplier = (supplier) => {
+    setSelectedSupplier(supplier);
+    setSupplierOptions([...supplierOptions, supplier]); // Add the selected supplier to the options array
+  };
+  function onCancelClick() {
+    console.log("abcs")
+    setCurrentPage("/main_window/Dashboard");
+  }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -137,22 +178,22 @@ export default function PurchasePage() {
       <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} md={3}>
-          <div onClick={() => setSupplierModalOpen(true)}>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={supplierOptions}
-          value={selectedSupplier}
-          onChange={(event, newValue) => setSelectedSupplier(newValue)}
-          renderInput={(params) => <TextField {...params} label="Supplier" />}
-          size='small'
-        />
-      </div>
-      <SupplierModal
-        open={supplierModalOpen}
-        onClose={() => setSupplierModalOpen(false)}
-        onAddSupplier={handleAddSupplier}
-      />
+            <div onClick={() => setSupplierModalOpen(true)}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={supplierOptions}
+                value={selectedSupplier}
+                onChange={(event, newValue) => setSelectedSupplier(newValue)}
+                renderInput={(params) => <TextField {...params} label="Supplier" />}
+                size='small'
+              />
+            </div>
+            <SupplierModal
+              open={supplierModalOpen}
+              onClose={() => setSupplierModalOpen(false)}
+              onAddSupplier={handleAddSupplier}
+            />
           </Grid>
           <Grid item xs={12} md={2}>
             <Typography variant="body1" fontWeight="bold">13200.00₹</Typography>
@@ -254,7 +295,7 @@ export default function PurchasePage() {
             </IconButton>
           </Grid>
         </Grid>
-        <Box sx={{ maxHeight: '44vh', overflowY: 'auto' }}>
+        <Box sx={{ height: '44vh', overflowY: 'auto' }}>
           <PurchaseTable data={data} handleDelete={handleDelete} />
         </Box>
         <Box />
@@ -340,13 +381,13 @@ export default function PurchasePage() {
           <TextField label="Debit Note" size='small' />
           <TextField label="S Tax Total" size='small' />
           <TextField label="Net Amount" size='small' />
-            <Button
-              variant="contained"
-              startIcon={<SaveIcon />}
-              size='small'
-            >
-              Save
-            </Button>
+          <Button
+            variant="contained"
+            startIcon={<SaveIcon />}
+            size='small'
+          >
+            Save
+          </Button>
         </Box>
 
       </Box>
