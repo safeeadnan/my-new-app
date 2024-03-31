@@ -41,10 +41,10 @@ function MyTable() {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
+    <TableContainer component={Paper} sx={{ padding: 0, width: '98vw' }}>
+        <Table  size="small">
+          <TableHead  >
+            <TableRow>
             <TableCell>MFG</TableCell>
             <TableCell>Product Name</TableCell>
             <TableCell>Pack</TableCell>
