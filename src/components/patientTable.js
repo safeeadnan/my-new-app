@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-//.js extension to de deta bhai 
+//.js extension to de deta bhai    < /TableCell> ye galat hai < / joint hona dono bina space ke
 
 
 export function generateRandomData() {
