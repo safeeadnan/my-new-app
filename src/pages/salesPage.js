@@ -17,6 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import MyTable from '../components/myTable';
 
 export function ButtonAppBar() {
 
@@ -74,7 +75,7 @@ export default function SalesPage() {
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs={12} md={4}>
-                            <ComboBox /> {/* Assume this is a styled select component */}
+                        <ComboBox /> {/* Assume this is a styled select component */}
                     </Grid>
                     <Grid item xs={12} md={2}>
                         <Button variant="text" fullWidth>MEMO No : C 1234</Button>
@@ -94,10 +95,12 @@ export default function SalesPage() {
                     </Grid>
                 </Grid>
             </Box>
-            <EnhancedTable />
+            <div style={{ height: '45vh', overflow: 'auto' }}>
+                <MyTable />
+            </div>
             <Grid container spacing={1}> {/* Adjusted spacing for outer Grid container */}
                 <Grid item xs={12} md={11} > {/* Adjusted for responsiveness */}
-                    <Grid container spacing={2} >                        
+                    <Grid container spacing={2} >
                         <Grid item xs={6} > {/* Each form field is a Grid item for better control */}
                             <TextField
                                 required
